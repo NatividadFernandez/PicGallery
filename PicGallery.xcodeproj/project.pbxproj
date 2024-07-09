@@ -14,6 +14,9 @@
 		0C4F10542C3B307C00516EF3 /* PicGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10532C3B307C00516EF3 /* PicGalleryTests.swift */; };
 		0C4F105E2C3B307C00516EF3 /* PicGalleryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F105D2C3B307C00516EF3 /* PicGalleryUITests.swift */; };
 		0C4F10602C3B307C00516EF3 /* PicGalleryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F105F2C3B307C00516EF3 /* PicGalleryUITestsLaunchTests.swift */; };
+		0C4F106E2C3D97BA00516EF3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F106D2C3D97BA00516EF3 /* NetworkError.swift */; };
+		0C4F10702C3D983F00516EF3 /* URLSessionNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F106F2C3D983F00516EF3 /* URLSessionNetworkClient.swift */; };
+		0C4F10722C3D98B000516EF3 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10712C3D98B000516EF3 /* NetworkClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		0C4F10592C3B307C00516EF3 /* PicGalleryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicGalleryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4F105D2C3B307C00516EF3 /* PicGalleryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicGalleryUITests.swift; sourceTree = "<group>"; };
 		0C4F105F2C3B307C00516EF3 /* PicGalleryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicGalleryUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0C4F106D2C3D97BA00516EF3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		0C4F106F2C3D983F00516EF3 /* URLSessionNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionNetworkClient.swift; sourceTree = "<group>"; };
+		0C4F10712C3D98B000516EF3 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 		0C4F10412C3B307A00516EF3 /* PicGallery */ = {
 			isa = PBXGroup;
 			children = (
+				0C4F106C2C3D973900516EF3 /* NetworkClient */,
 				0C4F10422C3B307A00516EF3 /* PicGalleryApp.swift */,
 				0C4F10442C3B307A00516EF3 /* ContentView.swift */,
 				0C4F10462C3B307C00516EF3 /* Assets.xcassets */,
@@ -125,6 +132,16 @@
 				0C4F105F2C3B307C00516EF3 /* PicGalleryUITestsLaunchTests.swift */,
 			);
 			path = PicGalleryUITests;
+			sourceTree = "<group>";
+		};
+		0C4F106C2C3D973900516EF3 /* NetworkClient */ = {
+			isa = PBXGroup;
+			children = (
+				0C4F106D2C3D97BA00516EF3 /* NetworkError.swift */,
+				0C4F106F2C3D983F00516EF3 /* URLSessionNetworkClient.swift */,
+				0C4F10712C3D98B000516EF3 /* NetworkClient.swift */,
+			);
+			path = NetworkClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +274,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C4F10702C3D983F00516EF3 /* URLSessionNetworkClient.swift in Sources */,
+				0C4F10722C3D98B000516EF3 /* NetworkClient.swift in Sources */,
+				0C4F106E2C3D97BA00516EF3 /* NetworkError.swift in Sources */,
 				0C4F10452C3B307A00516EF3 /* ContentView.swift in Sources */,
 				0C4F10432C3B307A00516EF3 /* PicGalleryApp.swift in Sources */,
 			);
