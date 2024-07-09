@@ -2,16 +2,18 @@
 //  PicGalleryApp.swift
 //  PicGallery
 //
-//  Created by Patricia Lucia Morillas Alcala on 7/7/24.
+//  Created by Natividad on 7/7/24.
 //
 
 import SwiftUI
 
 @main
 struct PicGalleryApp: App {
+    let coordinator = Coordinator()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            coordinator.makeSplashScreenView().environmentObject(coordinator)
+            //ContentView()
         }
     }
 }

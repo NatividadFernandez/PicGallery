@@ -17,6 +17,8 @@ struct LiveTokenRemoteService: TokenRemoteService {
     
     func createAccessToken() async throws -> TokenResponse {
         let response: TokenResponse = try await networkClient.postCall(url: NetworkConstants.authNetworkUrl, body: NetworkConstants.bodyParams)
+        print("HEMOS LLEGADO")
+        print(response)
         return response
     }
 }
