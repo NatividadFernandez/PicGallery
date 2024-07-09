@@ -19,6 +19,10 @@
 		0C4F10722C3D98B000516EF3 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10712C3D98B000516EF3 /* NetworkClient.swift */; };
 		0C4F10752C3D9DA100516EF3 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10742C3D9DA100516EF3 /* TokenResponse.swift */; };
 		0C4F10792C3D9FFE00516EF3 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10782C3D9FFE00516EF3 /* NetworkConstants.swift */; };
+		0C4F107D2C3DA56F00516EF3 /* TokenRemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F107C2C3DA56F00516EF3 /* TokenRemoteService.swift */; };
+		0C4F10802C3DA5F800516EF3 /* LiveTokenRemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F107F2C3DA5F800516EF3 /* LiveTokenRemoteService.swift */; };
+		0C4F10832C3DA75E00516EF3 /* TokenLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10822C3DA75E00516EF3 /* TokenLocalService.swift */; };
+		0C4F10852C3DA7C100516EF3 /* UserDefaultsTokenLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10842C3DA7C100516EF3 /* UserDefaultsTokenLocalService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,10 @@
 		0C4F10712C3D98B000516EF3 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		0C4F10742C3D9DA100516EF3 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		0C4F10782C3D9FFE00516EF3 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		0C4F107C2C3DA56F00516EF3 /* TokenRemoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRemoteService.swift; sourceTree = "<group>"; };
+		0C4F107F2C3DA5F800516EF3 /* LiveTokenRemoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTokenRemoteService.swift; sourceTree = "<group>"; };
+		0C4F10822C3DA75E00516EF3 /* TokenLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLocalService.swift; sourceTree = "<group>"; };
+		0C4F10842C3DA7C100516EF3 /* UserDefaultsTokenLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTokenLocalService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +169,7 @@
 		0C4F10762C3D9F5700516EF3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0C4F107A2C3DA53300516EF3 /* Services */,
 				0C4F10772C3D9F6500516EF3 /* Constants */,
 			);
 			path = Data;
@@ -172,6 +181,41 @@
 				0C4F10782C3D9FFE00516EF3 /* NetworkConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		0C4F107A2C3DA53300516EF3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0C4F107B2C3DA54E00516EF3 /* Token */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0C4F107B2C3DA54E00516EF3 /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				0C4F10812C3DA6DB00516EF3 /* Local */,
+				0C4F107E2C3DA5CE00516EF3 /* Remote */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		0C4F107E2C3DA5CE00516EF3 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				0C4F107C2C3DA56F00516EF3 /* TokenRemoteService.swift */,
+				0C4F107F2C3DA5F800516EF3 /* LiveTokenRemoteService.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		0C4F10812C3DA6DB00516EF3 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				0C4F10822C3DA75E00516EF3 /* TokenLocalService.swift */,
+				0C4F10842C3DA7C100516EF3 /* UserDefaultsTokenLocalService.swift */,
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,8 +349,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C4F10792C3D9FFE00516EF3 /* NetworkConstants.swift in Sources */,
+				0C4F10832C3DA75E00516EF3 /* TokenLocalService.swift in Sources */,
+				0C4F107D2C3DA56F00516EF3 /* TokenRemoteService.swift in Sources */,
 				0C4F10702C3D983F00516EF3 /* URLSessionNetworkClient.swift in Sources */,
 				0C4F10722C3D98B000516EF3 /* NetworkClient.swift in Sources */,
+				0C4F10802C3DA5F800516EF3 /* LiveTokenRemoteService.swift in Sources */,
+				0C4F10852C3DA7C100516EF3 /* UserDefaultsTokenLocalService.swift in Sources */,
 				0C4F106E2C3D97BA00516EF3 /* NetworkError.swift in Sources */,
 				0C4F10452C3B307A00516EF3 /* ContentView.swift in Sources */,
 				0C4F10752C3D9DA100516EF3 /* TokenResponse.swift in Sources */,
