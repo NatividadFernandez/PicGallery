@@ -30,6 +30,7 @@ class GalleryViewModel: ObservableObject {
             
             do {
                 pictures = try await galleryRepository.getGallery().data
+                print(pictures.count)
             } catch {
                 self.error = error
             }

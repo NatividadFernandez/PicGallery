@@ -12,17 +12,22 @@ struct GalleryView: View {
     @EnvironmentObject var coordinator: Coordinator
     @StateObject private var viewModel: GalleryViewModel
     
+    let columns = Array(repeating: GridItem(.flexible()), count: 2)
+    
     init(viewModel: GalleryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
             VStack {
+                Text("Gallery")
+                    .font(.title)
+                    .padding(.top, 15)
                 ScrollView {
-                    VStack {
+                    LazyVGrid(columns: columns) {
                         if viewModel.isLoading {
                             Spacer()
-                            ProgressView()
+                            //ProgressView()
                             Spacer()
                         } else {
                             ForEach(viewModel.pictures) { picture in
@@ -30,6 +35,10 @@ struct GalleryView: View {
                             }
                         }
                     }
+                    .padding(.horizontal)
+                    .padding(.bottom)
+                    .padding(.top, 0)
+                    
                 }
                 .refreshable {
                     await viewModel.getGallery()

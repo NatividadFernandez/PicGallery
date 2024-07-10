@@ -19,26 +19,27 @@ struct GalleryRowView: View {
                     image
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 130, height: 120)
+                        .frame(width: 160, height: 150)
                         .cornerRadius(10)
                         .clipped()
                 default:
-                    Image("photo")
+                    /*Image("photo")
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 130, height: 120)
+                        .frame(width: 160, height: 150)
                         .cornerRadius(10)
-                        .clipped()
+                        .clipped()Color(red: 0.88, green: 0.84, blue: 0.96)*/
+                    ProgressView()
                 }
             }
-            .frame(width: 130, height: 120)
+            .frame(width: 160, height: 150)
             .cornerRadius(10)
             .clipped()
         }
-        .background(Color(red: 0.88, green: 0.84, blue: 0.96))
+        .background(Color.gray.opacity(0.1))
         .cornerRadius(10)
         .shadow(radius: 1)
-        .frame(width: 130, height: 120)
+        .frame(width: 160, height: 150)
 
     }
 }
