@@ -31,6 +31,13 @@
 		0C4F109C2C3DB7AC00516EF3 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F109B2C3DB7AC00516EF3 /* SplashScreenView.swift */; };
 		0C4F10A02C3DC01B00516EF3 /* photoAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F109F2C3DC01B00516EF3 /* photoAnimation.json */; };
 		0C4F10A22C3DD0DA00516EF3 /* GalleryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10A12C3DD0DA00516EF3 /* GalleryResponse.swift */; };
+		0C4F10A72C3DD8E500516EF3 /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10A62C3DD8E500516EF3 /* GalleryViewModel.swift */; };
+		0C4F10AC2C3DDA5400516EF3 /* LiveGalleryRemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10AB2C3DDA5400516EF3 /* LiveGalleryRemoteService.swift */; };
+		0C4F10AE2C3DDA6B00516EF3 /* GalleryRemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10AD2C3DDA6B00516EF3 /* GalleryRemoteService.swift */; };
+		0C4F10B02C3DDF5300516EF3 /* MockGalleryRemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10AF2C3DDF5300516EF3 /* MockGalleryRemoteService.swift */; };
+		0C4F10B22C3DE00000516EF3 /* GalleryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B12C3DE00000516EF3 /* GalleryRepository.swift */; };
+		0C4F10B42C3DE32300516EF3 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B32C3DE32300516EF3 /* GalleryView.swift */; };
+		0C4F10B62C3DE86500516EF3 /* GalleryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B52C3DE86500516EF3 /* GalleryRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +84,13 @@
 		0C4F109B2C3DB7AC00516EF3 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		0C4F109F2C3DC01B00516EF3 /* photoAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = photoAnimation.json; path = ../../../../../Downloads/photoAnimation.json; sourceTree = "<group>"; };
 		0C4F10A12C3DD0DA00516EF3 /* GalleryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryResponse.swift; sourceTree = "<group>"; };
+		0C4F10A62C3DD8E500516EF3 /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
+		0C4F10AB2C3DDA5400516EF3 /* LiveGalleryRemoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGalleryRemoteService.swift; sourceTree = "<group>"; };
+		0C4F10AD2C3DDA6B00516EF3 /* GalleryRemoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRemoteService.swift; sourceTree = "<group>"; };
+		0C4F10AF2C3DDF5300516EF3 /* MockGalleryRemoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGalleryRemoteService.swift; sourceTree = "<group>"; };
+		0C4F10B12C3DE00000516EF3 /* GalleryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRepository.swift; sourceTree = "<group>"; };
+		0C4F10B32C3DE32300516EF3 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		0C4F10B52C3DE86500516EF3 /* GalleryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,17 +142,17 @@
 		0C4F10412C3B307A00516EF3 /* PicGallery */ = {
 			isa = PBXGroup;
 			children = (
-				0C4F10952C3DB48B00516EF3 /* Features */,
-				0C4F108C2C3DAD4900516EF3 /* Components */,
 				0C4F10892C3DACF200516EF3 /* Animations */,
+				0C4F10462C3B307C00516EF3 /* Assets.xcassets */,
+				0C4F108C2C3DAD4900516EF3 /* Components */,
 				0C4F10762C3D9F5700516EF3 /* Data */,
 				0C4F10732C3D9A3400516EF3 /* Entities */,
+				0C4F10952C3DB48B00516EF3 /* Features */,
 				0C4F106C2C3D973900516EF3 /* NetworkClient */,
-				0C4F10422C3B307A00516EF3 /* PicGalleryApp.swift */,
-				0C4F10442C3B307A00516EF3 /* ContentView.swift */,
-				0C4F10462C3B307C00516EF3 /* Assets.xcassets */,
 				0C4F10482C3B307C00516EF3 /* Preview Content */,
+				0C4F10442C3B307A00516EF3 /* ContentView.swift */,
 				0C4F10932C3DB31600516EF3 /* Coordinator.swift */,
+				0C4F10422C3B307A00516EF3 /* PicGalleryApp.swift */,
 			);
 			path = PicGallery;
 			sourceTree = "<group>";
@@ -208,6 +222,7 @@
 		0C4F107A2C3DA53300516EF3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0C4F10A82C3DD9FA00516EF3 /* Gallery */,
 				0C4F107B2C3DA54E00516EF3 /* Token */,
 			);
 			path = Services;
@@ -244,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				0C4F10872C3DA9DC00516EF3 /* TokenRepository.swift */,
+				0C4F10B12C3DE00000516EF3 /* GalleryRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -267,6 +283,7 @@
 		0C4F10952C3DB48B00516EF3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				0C4F10A32C3DD89000516EF3 /* Gallery */,
 				0C4F10962C3DB49A00516EF3 /* SplashScreen */,
 			);
 			path = Features;
@@ -279,6 +296,42 @@
 				0C4F109B2C3DB7AC00516EF3 /* SplashScreenView.swift */,
 			);
 			path = SplashScreen;
+			sourceTree = "<group>";
+		};
+		0C4F10A32C3DD89000516EF3 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				0C4F10A62C3DD8E500516EF3 /* GalleryViewModel.swift */,
+				0C4F10B32C3DE32300516EF3 /* GalleryView.swift */,
+				0C4F10B52C3DE86500516EF3 /* GalleryRowView.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		0C4F10A82C3DD9FA00516EF3 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				0C4F10AA2C3DDA1600516EF3 /* Local */,
+				0C4F10A92C3DDA0800516EF3 /* Remote */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		0C4F10A92C3DDA0800516EF3 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				0C4F10AB2C3DDA5400516EF3 /* LiveGalleryRemoteService.swift */,
+				0C4F10AD2C3DDA6B00516EF3 /* GalleryRemoteService.swift */,
+				0C4F10AF2C3DDF5300516EF3 /* MockGalleryRemoteService.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		0C4F10AA2C3DDA1600516EF3 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,20 +473,27 @@
 			files = (
 				0C4F10A22C3DD0DA00516EF3 /* GalleryResponse.swift in Sources */,
 				0C4F10792C3D9FFE00516EF3 /* NetworkConstants.swift in Sources */,
+				0C4F10B62C3DE86500516EF3 /* GalleryRowView.swift in Sources */,
 				0C4F10832C3DA75E00516EF3 /* TokenLocalService.swift in Sources */,
 				0C4F107D2C3DA56F00516EF3 /* TokenRemoteService.swift in Sources */,
+				0C4F10B22C3DE00000516EF3 /* GalleryRepository.swift in Sources */,
 				0C4F10702C3D983F00516EF3 /* URLSessionNetworkClient.swift in Sources */,
 				0C4F10722C3D98B000516EF3 /* NetworkClient.swift in Sources */,
 				0C4F10802C3DA5F800516EF3 /* LiveTokenRemoteService.swift in Sources */,
 				0C4F10942C3DB31600516EF3 /* Coordinator.swift in Sources */,
 				0C4F109C2C3DB7AC00516EF3 /* SplashScreenView.swift in Sources */,
+				0C4F10B02C3DDF5300516EF3 /* MockGalleryRemoteService.swift in Sources */,
+				0C4F10AE2C3DDA6B00516EF3 /* GalleryRemoteService.swift in Sources */,
+				0C4F10A72C3DD8E500516EF3 /* GalleryViewModel.swift in Sources */,
 				0C4F10852C3DA7C100516EF3 /* UserDefaultsTokenLocalService.swift in Sources */,
 				0C4F106E2C3D97BA00516EF3 /* NetworkError.swift in Sources */,
 				0C4F108E2C3DAD6200516EF3 /* LottieView.swift in Sources */,
+				0C4F10B42C3DE32300516EF3 /* GalleryView.swift in Sources */,
 				0C4F10452C3B307A00516EF3 /* ContentView.swift in Sources */,
 				0C4F10882C3DA9DC00516EF3 /* TokenRepository.swift in Sources */,
 				0C4F10752C3D9DA100516EF3 /* TokenResponse.swift in Sources */,
 				0C4F10432C3B307A00516EF3 /* PicGalleryApp.swift in Sources */,
+				0C4F10AC2C3DDA5400516EF3 /* LiveGalleryRemoteService.swift in Sources */,
 				0C4F10982C3DB4BC00516EF3 /* SplashScreenViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,5 +21,6 @@ struct NetworkConstants {
     ]
     
     static let baseUrl = "https://api.imgur.com/3"
+    static let galleryUrl = "\(baseUrl)/account/me/images"
     
 }

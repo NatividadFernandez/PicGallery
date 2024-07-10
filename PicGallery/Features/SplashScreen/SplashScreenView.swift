@@ -22,7 +22,8 @@ struct SplashScreenView: View {
         
     var body: some View {
             if isActive {
-                ContentView()
+                //ContentView()
+                coordinator.makeGalleryView()
             } else {
                 VStack {
                     
