@@ -57,7 +57,7 @@ class URLSessionNetworkClient: NetworkClient {
         var urlRequest = URLRequest(url: url)
         
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+    
         urlRequest.httpMethod = "POST"
         
         if let body {
@@ -65,5 +65,19 @@ class URLSessionNetworkClient: NetworkClient {
         }
         
         return try await call(urlRequest: urlRequest)
+    }
+    
+    func deleteCall<T>(token: String, url: String) async throws -> T where T : Decodable {
+        guard let url = URL(string: url) else {
+            throw NetworkError.badUrl
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "DELETE"
+        urlRequest.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        return try await call(urlRequest: urlRequest)
+        
     }
 }
