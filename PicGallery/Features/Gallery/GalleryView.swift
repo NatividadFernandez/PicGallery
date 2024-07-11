@@ -18,7 +18,8 @@ struct GalleryView: View {
     @State private var isCameraPresented = false
     @State private var selectedImage: UIImage?
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    
+    @State private var showErrorAlert = false
+    @State private var errorMessage = ""
     
     
     init(viewModel: GalleryViewModel) {
@@ -86,8 +87,21 @@ struct GalleryView: View {
             .sheet(isPresented: $isCameraPresented) {
                 ImagePicker(selectedImage: $selectedImage, isPresented: $isCameraPresented, sourceType: sourceType)
             }
+            .onChange(of: selectedImage) { oldImage, newImage in
+                if let newImage = newImage {
+                    handleSelectImage(newImage)
+                }
+                
+            }
+            .alert(isPresented: $showErrorAlert){
+                Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+            }
         }
     }
+
+private func handleSelectImage(_ image: UIImage){
+    print("Imagen seleccionada: \(image)")
+}
 
 
 #Preview {
