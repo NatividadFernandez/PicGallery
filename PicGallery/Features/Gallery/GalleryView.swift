@@ -14,6 +14,13 @@ struct GalleryView: View {
     
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
+    @State private var isImagePickerPresented = false
+    @State private var isCameraPresented = false
+    @State private var selectedImage: UIImage?
+    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    
+    
+    
     init(viewModel: GalleryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -38,7 +45,6 @@ struct GalleryView: View {
                     .padding(.horizontal)
                     .padding(.bottom)
                     .padding(.top, 0)
-                    
                 }
                 .refreshable {
                     await viewModel.getGallery()
@@ -46,10 +52,11 @@ struct GalleryView: View {
                 .task {
                     await viewModel.getGallery()
                 }
-
                 Spacer()
                 VStack(spacing: 10) {
                     Button(action: {
+                        sourceType = .photoLibrary
+                        isImagePickerPresented = true
                     }) {
                         Text("Import picture")
                             .foregroundColor(.white)
@@ -60,6 +67,8 @@ struct GalleryView: View {
                     }
                     
                     Button(action: {
+                        sourceType = .camera
+                        isCameraPresented = true
                     }) {
                         Text("Take picture")
                             .foregroundColor(.white)
@@ -67,13 +76,19 @@ struct GalleryView: View {
                             .frame(maxWidth: .infinity)
                             .background(Color.green)
                             .cornerRadius(8)
-                        
                     }
                 }
                 .padding()
             }
+            .sheet(isPresented: $isImagePickerPresented) {
+                ImagePicker(selectedImage: $selectedImage, isPresented: $isImagePickerPresented, sourceType: sourceType)
+            }
+            .sheet(isPresented: $isCameraPresented) {
+                ImagePicker(selectedImage: $selectedImage, isPresented: $isCameraPresented, sourceType: sourceType)
+            }
         }
     }
+
 
 #Preview {
     let coordinator = Coordinator(mock: true)

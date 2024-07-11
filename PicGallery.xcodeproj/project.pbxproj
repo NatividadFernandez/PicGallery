@@ -38,6 +38,7 @@
 		0C4F10B22C3DE00000516EF3 /* GalleryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B12C3DE00000516EF3 /* GalleryRepository.swift */; };
 		0C4F10B42C3DE32300516EF3 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B32C3DE32300516EF3 /* GalleryView.swift */; };
 		0C4F10B62C3DE86500516EF3 /* GalleryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B52C3DE86500516EF3 /* GalleryRowView.swift */; };
+		0C4F10B82C40586C00516EF3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B72C40586C00516EF3 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		0C4F10B12C3DE00000516EF3 /* GalleryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRepository.swift; sourceTree = "<group>"; };
 		0C4F10B32C3DE32300516EF3 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		0C4F10B52C3DE86500516EF3 /* GalleryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRowView.swift; sourceTree = "<group>"; };
+		0C4F10B72C40586C00516EF3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				0C4F108D2C3DAD6200516EF3 /* LottieView.swift */,
+				0C4F10B72C40586C00516EF3 /* ImagePicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 			files = (
 				0C4F10A22C3DD0DA00516EF3 /* GalleryResponse.swift in Sources */,
 				0C4F10792C3D9FFE00516EF3 /* NetworkConstants.swift in Sources */,
+				0C4F10B82C40586C00516EF3 /* ImagePicker.swift in Sources */,
 				0C4F10B62C3DE86500516EF3 /* GalleryRowView.swift in Sources */,
 				0C4F10832C3DA75E00516EF3 /* TokenLocalService.swift in Sources */,
 				0C4F107D2C3DA56F00516EF3 /* TokenRemoteService.swift in Sources */,
@@ -660,6 +664,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PicGallery/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use your camera for taking pictures";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -688,6 +693,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PicGallery/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use your camera for taking pictures";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
