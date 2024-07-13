@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class GalleryViewModel: ObservableObject {
     
@@ -30,7 +31,6 @@ class GalleryViewModel: ObservableObject {
             
             do {
                 pictures = try await galleryRepository.getGallery().data
-                print(pictures.count)
             } catch {
                 self.error = error
             }
@@ -39,5 +39,21 @@ class GalleryViewModel: ObservableObject {
         }
         
         await currentTask?.value
+    }
+    
+    @MainActor
+    func addPicture(image: UIImage) async {
+        error = nil
+        isLoading = true
+        
+        do {
+            let newPicture = try await galleryRepository.addPicture(image: image)
+            pictures.insert(newPicture.data, at: 0)
+            await getGallery()
+        } catch {
+            self.error = error
+            print("Error", error)
+        }
+        isLoading = false
     }
 }

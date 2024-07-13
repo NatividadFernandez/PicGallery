@@ -45,7 +45,7 @@ class URLSessionNetworkClient: NetworkClient {
         urlRequest.httpMethod = "GET"
         urlRequest.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
         return try await call(urlRequest: urlRequest)
     }
     
@@ -57,7 +57,7 @@ class URLSessionNetworkClient: NetworkClient {
         var urlRequest = URLRequest(url: url)
         
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    
+        
         urlRequest.httpMethod = "POST"
         
         if let body {
@@ -67,6 +67,25 @@ class URLSessionNetworkClient: NetworkClient {
         return try await call(urlRequest: urlRequest)
     }
     
+    func postImage<T>(token: String, url: String, body: Encodable?) async throws -> T where T : Decodable {
+        guard let url = URL(string: url) else {
+            throw NetworkError.badUrl
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        urlRequest.httpMethod = "POST"
+        
+        if let body {
+            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: body)
+        }
+        
+        return try await call(urlRequest: urlRequest)
+    }
+
     func deleteCall<T>(token: String, url: String) async throws -> T where T : Decodable {
         guard let url = URL(string: url) else {
             throw NetworkError.badUrl

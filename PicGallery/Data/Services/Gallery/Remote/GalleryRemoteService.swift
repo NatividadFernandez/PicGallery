@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol GalleryRemoteService {
     func getGallery(token: String) async throws -> GalleryResponse
+    func uploadPicture(token: String, uploadBody: [String: String]) async throws -> PictureResponse
 }

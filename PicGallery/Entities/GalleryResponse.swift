@@ -7,9 +7,16 @@
 
 import Foundation
 
-// MARK: - Gallery
+// MARK: - GalleryResponse
 struct GalleryResponse: Codable {
     let data: [Picture]
+    let success: Bool
+    let status: Int
+}
+
+// MARK: - PictureResponse
+struct PictureResponse: Codable {
+    let data: Picture
     let success: Bool
     let status: Int
 }
@@ -18,18 +25,18 @@ struct GalleryResponse: Codable {
 struct Picture: Codable, Identifiable {
     let id: String
     let title: String?
-    let description: String
+    let description: String?
     let datetime: Int
     let type: String
     let animated: Bool
     let width, height, size, views: Int
     let bandwidth: Int
     let favorite: Bool
-    let accountURL: String
-    let accountID: Int
+    let accountURL: String?
+    let accountID: Int?
     let isAd, inMostViral, hasSound: Bool
-    let adType: Int
-    let adURL: String
+    let adType: Int?
+    let adURL: String?
     let inGallery: Bool
     let deletehash, name: String
     let link: String
@@ -77,3 +84,5 @@ struct Picture: Codable, Identifiable {
     }
 
 }
+
+

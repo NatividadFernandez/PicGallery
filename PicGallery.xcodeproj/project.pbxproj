@@ -206,9 +206,9 @@
 		0C4F10762C3D9F5700516EF3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0C4F10772C3D9F6500516EF3 /* Constants */,
 				0C4F10862C3DA9C600516EF3 /* Repository */,
 				0C4F107A2C3DA53300516EF3 /* Services */,
-				0C4F10772C3D9F6500516EF3 /* Constants */,
 			);
 			path = Data;
 			sourceTree = "<group>";

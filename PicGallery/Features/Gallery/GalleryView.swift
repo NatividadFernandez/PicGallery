@@ -27,84 +27,88 @@ struct GalleryView: View {
     }
     
     var body: some View {
-            VStack {
-                Text("Gallery")
-                    .font(.title)
-                    .padding(.top, 15)
-                ScrollView {
-                    LazyVGrid(columns: columns) {
-                        if viewModel.isLoading {
-                            Spacer()
-                            //ProgressView()
-                            Spacer()
-                        } else {
-                            ForEach(viewModel.pictures) { picture in
-                                GalleryRowView(picture: picture)
-                            }
+        VStack {
+            Text("Gallery")
+                .font(.title)
+                .padding(.top, 15)
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    if viewModel.isLoading && viewModel.pictures.isEmpty {
+                        Spacer()
+                        ProgressView()
+                            .frame(maxWidth: .infinity,maxHeight: .infinity)
+                        Spacer()
+                    } else {
+                        ForEach(viewModel.pictures) { picture in
+                            GalleryRowView(picture: picture)
                         }
                     }
-                    .padding(.horizontal)
-                    .padding(.bottom)
-                    .padding(.top, 0)
                 }
-                .refreshable {
-                    await viewModel.getGallery()
-                }
-                .task {
-                    await viewModel.getGallery()
-                }
-                Spacer()
-                VStack(spacing: 10) {
-                    Button(action: {
-                        sourceType = .photoLibrary
-                        isImagePickerPresented = true
-                    }) {
-                        Text("Import picture")
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .cornerRadius(8)
-                    }
-                    
-                    Button(action: {
-                        sourceType = .camera
-                        isCameraPresented = true
-                    }) {
-                        Text("Take picture")
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.green)
-                            .cornerRadius(8)
-                    }
-                }
-                .padding()
+                .padding(.horizontal)
+                .padding(.bottom)
+                .padding(.top, 0)
             }
-            .sheet(isPresented: $isImagePickerPresented) {
-                ImagePicker(selectedImage: $selectedImage, isPresented: $isImagePickerPresented, sourceType: sourceType)
+            .refreshable {
+                await viewModel.getGallery()
             }
-            .sheet(isPresented: $isCameraPresented) {
-                ImagePicker(selectedImage: $selectedImage, isPresented: $isCameraPresented, sourceType: sourceType)
+            .task {
+                await viewModel.getGallery()
             }
-            .onChange(of: selectedImage) { oldImage, newImage in
-                if let newImage = newImage {
-                    handleSelectImage(newImage)
+            Spacer()
+            VStack(spacing: 10) {
+                Button(action: {
+                    sourceType = .photoLibrary
+                    isImagePickerPresented = true
+                }) {
+                    Text("Import picture")
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(8)
                 }
                 
+                Button(action: {
+                    sourceType = .camera
+                    isCameraPresented = true
+                }) {
+                    Text("Take picture")
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.green)
+                        .cornerRadius(8)
+                }
             }
-            .alert(isPresented: $showErrorAlert){
-                Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+            .padding()
+        }
+        .sheet(isPresented: $isImagePickerPresented) {
+            ImagePicker(selectedImage: $selectedImage, isPresented: $isImagePickerPresented, sourceType: sourceType)
+        }
+        .sheet(isPresented: $isCameraPresented) {
+            ImagePicker(selectedImage: $selectedImage, isPresented: $isCameraPresented, sourceType: sourceType)
+        }
+        .onChange(of: selectedImage) { oldImage, newImage in
+            if let newImage = newImage {
+                handleSelectImage(newImage)
             }
+            
+        }
+        .alert(isPresented: $showErrorAlert){
+            Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
         }
     }
-
-private func handleSelectImage(_ image: UIImage){
-    print("Imagen seleccionada: \(image)")
+    
+    private func handleSelectImage(_ image: UIImage)  {
+        Task {
+            await viewModel.addPicture(image: image)
+        }
+    }
 }
 
 
+
 #Preview {
-    let coordinator = Coordinator(mock: true)
+    let coordinator = Coordinator(mock: false)
     return coordinator.makeGalleryView().environmentObject(coordinator)
 }

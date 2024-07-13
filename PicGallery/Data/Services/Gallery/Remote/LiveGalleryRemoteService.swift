@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct LiveGalleryRemoteService: GalleryRemoteService {
     
@@ -17,6 +18,10 @@ struct LiveGalleryRemoteService: GalleryRemoteService {
     
     func getGallery(token: String) async throws -> GalleryResponse {
         return try await networkClient.getCall(token: token, url: NetworkConstants.galleryUrl, queryParams: nil)
+    }
+    
+    func uploadPicture(token: String, uploadBody: [String : String]) async throws -> PictureResponse {
+        return try await networkClient.postImage(token: token, url: NetworkConstants.uploadUrl, body: uploadBody)
     }
     
 }
