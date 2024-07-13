@@ -16,12 +16,18 @@ struct GalleryView: View {
     
     @State private var isImagePickerPresented = false
     @State private var isCameraPresented = false
+    @State private var isFilePickerPresented = false
     @State private var selectedImage: UIImage?
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    @State private var showErrorAlert = false
-    @State private var errorMessage = ""
     @State private var selectedPicture: Picture?
     @State private var showAlert = false
+    @State private var showErrorAlert = false
+    @State private var errorMessage: String? = nil
+    @State private var isImportingPicture = false
+    @State private var isTakingPicture = false
+    @State private var showActionSheet = false
+    
+    
     
     init(viewModel: GalleryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -60,8 +66,9 @@ struct GalleryView: View {
             Spacer()
             VStack(spacing: 10) {
                 Button(action: {
-                    sourceType = .photoLibrary
-                    isImagePickerPresented = true
+                    //sourceType = .photoLibrary
+                    //isImagePickerPresented = true
+                    showActionSheet = true
                 }) {
                     Text("Import picture")
                         .foregroundColor(.white)
@@ -69,6 +76,11 @@ struct GalleryView: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.blue)
                         .cornerRadius(8)
+                        .overlay(content: {
+                            if isImportingPicture {
+                                ProgressView()
+                            }
+                        })
                 }
                 
                 Button(action: {
@@ -81,6 +93,11 @@ struct GalleryView: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.green)
                         .cornerRadius(8)
+                        .overlay(content: {
+                            if isTakingPicture {
+                                ProgressView()
+                            }
+                        })
                 }
             }
             .padding()
@@ -91,14 +108,23 @@ struct GalleryView: View {
         .sheet(isPresented: $isCameraPresented) {
             ImagePicker(selectedImage: $selectedImage, isPresented: $isCameraPresented, sourceType: sourceType)
         }
+        .sheet(isPresented: $isFilePickerPresented) {
+            FileDocumentPicker(selectedImage: $selectedImage, isPresented: $isFilePickerPresented, errorMessage: $errorMessage)
+        }
         .onChange(of: selectedImage) { oldImage, newImage in
             if let newImage = newImage {
                 handleSelectImage(newImage)
             }
             
         }
-        .alert(isPresented: $showErrorAlert){
-            Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+        .alert(isPresented: $showErrorAlert) {
+                    Alert(title: Text("Error"), message: Text(errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK")))
+                }
+        .onChange(of: errorMessage) { oldValue, newValue in
+            if newValue != nil {
+                showErrorAlert = true
+                
+            }
         }
         .alert(isPresented: $showAlert) {
             Alert(
@@ -112,11 +138,30 @@ struct GalleryView: View {
                 secondaryButton: .cancel()
             )
         }
+        .actionSheet(isPresented: $showActionSheet) {
+                    ActionSheet(
+                        title: Text("Select an option"),
+                        buttons: [
+                            .default(Text("Photo Library")) {
+                                isImagePickerPresented = true
+                            },
+                            .default(Text("File Explorer")) {
+                                isFilePickerPresented = true
+                            },
+                            .cancel()
+                        ]
+                    )
+                }
+
+
     }
+    
     
     private func handleSelectImage(_ image: UIImage)  {
         Task {
+            handleAction(result: true)
             await viewModel.addPicture(image: image)
+            handleAction(result: false)
         }
     }
     
@@ -125,9 +170,20 @@ struct GalleryView: View {
             await viewModel.deletePicture(picture: picture)
         }
     }
+    
+    private func handleAction(result : Bool) {
+        switch sourceType {
+        case .photoLibrary:
+            isImportingPicture = result
+        case .camera:
+            isTakingPicture = result
+        default:
+            break
+        }
+    }
 }
 
 #Preview {
-    let coordinator = Coordinator(mock: false)
+    let coordinator = Coordinator(mock: true)
     return coordinator.makeGalleryView().environmentObject(coordinator)
 }

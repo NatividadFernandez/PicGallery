@@ -56,7 +56,7 @@ struct Picture: Codable, Identifiable {
     
     static var example: Picture {
         return Picture(
-            id: "abc123",
+            id: UUID().uuidString,
             title: "Beautiful Landscape",
             description: "A stunning landscape photo taken at sunset.",
             datetime: 1625683200,
@@ -68,7 +68,7 @@ struct Picture: Codable, Identifiable {
             views: 1000,
             bandwidth: 987654,
             favorite: true,
-            accountURL: "https://imgur.com/user/example",
+            accountURL: "",
             accountID: 123456,
             isAd: false,
             inMostViral: true,
@@ -76,9 +76,9 @@ struct Picture: Codable, Identifiable {
             adType: 0,
             adURL: "",
             inGallery: true,
-            deletehash: "xyz789",
+            deletehash: UUID().uuidString,
             name: "landscape",
-            link: "https://imgur.com/gallery/abc123"
+            link: ""
         )
     }
 }

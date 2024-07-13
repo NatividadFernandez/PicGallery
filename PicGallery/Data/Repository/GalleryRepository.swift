@@ -31,8 +31,8 @@ struct GalleryRepository {
         return try await remoteService.uploadPicture(token: token, uploadBody: uploadBody)
     }
     
-    func deletePicture(imageHash: String) async throws -> Bool {
+    func deletePicture(imageHash: String) async throws -> GenericPictureResponse<Bool> {
         let token = try await localTokenService.getAccessToken()
-        return try await remoteService.deletePicture(token: token, imageHash: imageHash).data
+        return try await remoteService.deletePicture(token: token, imageHash: imageHash)
     }
 }

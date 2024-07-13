@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var username: String = ""
+    @State private var password: String = ""
+    @State private var accessToken: String?
+    
+    
     var body: some View {
         VStack {
             Image(systemName: "camera.fill")

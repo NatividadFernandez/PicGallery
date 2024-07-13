@@ -39,6 +39,7 @@
 		0C4F10B42C3DE32300516EF3 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B32C3DE32300516EF3 /* GalleryView.swift */; };
 		0C4F10B62C3DE86500516EF3 /* GalleryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B52C3DE86500516EF3 /* GalleryRowView.swift */; };
 		0C4F10B82C40586C00516EF3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B72C40586C00516EF3 /* ImagePicker.swift */; };
+		0C4F10BA2C432A8300516EF3 /* FileDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B92C432A8300516EF3 /* FileDocumentPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		0C4F10B32C3DE32300516EF3 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		0C4F10B52C3DE86500516EF3 /* GalleryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRowView.swift; sourceTree = "<group>"; };
 		0C4F10B72C40586C00516EF3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		0C4F10B92C432A8300516EF3 /* FileDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDocumentPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +281,7 @@
 			children = (
 				0C4F108D2C3DAD6200516EF3 /* LottieView.swift */,
 				0C4F10B72C40586C00516EF3 /* ImagePicker.swift */,
+				0C4F10B92C432A8300516EF3 /* FileDocumentPicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				0C4F10702C3D983F00516EF3 /* URLSessionNetworkClient.swift in Sources */,
 				0C4F10722C3D98B000516EF3 /* NetworkClient.swift in Sources */,
 				0C4F10802C3DA5F800516EF3 /* LiveTokenRemoteService.swift in Sources */,
+				0C4F10BA2C432A8300516EF3 /* FileDocumentPicker.swift in Sources */,
 				0C4F10942C3DB31600516EF3 /* Coordinator.swift in Sources */,
 				0C4F109C2C3DB7AC00516EF3 /* SplashScreenView.swift in Sources */,
 				0C4F10B02C3DDF5300516EF3 /* MockGalleryRemoteService.swift in Sources */,
@@ -665,6 +669,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use your camera for taking pictures";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Permission to access documents folder is required to import files.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Permission to access photo library is required to import pictures.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Permission to access photo library is required to import pictures.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -694,6 +701,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use your camera for taking pictures";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Permission to access documents folder is required to import files.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Permission to access photo library is required to import pictures.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Permission to access photo library is required to import pictures.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -55,10 +55,9 @@ class GalleryViewModel: ObservableObject {
             } else {
                 print("Unable to add image")
             }
-            await getGallery()
+            //await getGallery()
         } catch {
             self.error = error
-            print("Error", error)
         }
         
         isLoading = false
@@ -71,16 +70,15 @@ class GalleryViewModel: ObservableObject {
         
         do {
             let response = try await galleryRepository.deletePicture(imageHash: picture.deletehash)
-            if response {
+            if response.success {
                 print("Image deleted successfully with id: \(picture.id)")
                 pictures.removeAll{$0.deletehash == picture.deletehash}
             } else {
                 print("Unable to delete image with id: \(picture.id)")
             }
-            await getGallery()
+            //await getGallery()
         } catch {
             self.error = error
-            print("Error", error)
         }
         
         isLoading = false
