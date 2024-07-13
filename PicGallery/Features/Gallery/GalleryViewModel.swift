@@ -56,4 +56,10 @@ class GalleryViewModel: ObservableObject {
         }
         isLoading = false
     }
+    
+    @MainActor
+    func deletePicture(picture: Picture) async {
+        print("Quieres eliminar esta imagen: \(picture)")
+        
+    }
 }

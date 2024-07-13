@@ -20,7 +20,8 @@ struct GalleryView: View {
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var showErrorAlert = false
     @State private var errorMessage = ""
-    
+    @State private var selectedPicture: Picture?
+    @State private var showAlert = false
     
     init(viewModel: GalleryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -36,11 +37,14 @@ struct GalleryView: View {
                     if viewModel.isLoading && viewModel.pictures.isEmpty {
                         Spacer()
                         ProgressView()
-                            .frame(maxWidth: .infinity,maxHeight: .infinity)
                         Spacer()
                     } else {
                         ForEach(viewModel.pictures) { picture in
                             GalleryRowView(picture: picture)
+                                .onLongPressGesture{
+                                    selectedPicture = picture
+                                    showAlert = true
+                                }
                         }
                     }
                 }
@@ -97,11 +101,29 @@ struct GalleryView: View {
         .alert(isPresented: $showErrorAlert){
             Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
         }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Delete Picture"),
+                message: Text("Are you sure you want to delete this picture?"),
+                primaryButton: .destructive(Text("Delete")) {
+                    if let picture = selectedPicture{
+                        deletePicture(picture)
+                    }
+                },
+                secondaryButton: .cancel()
+            )
+        }
     }
     
     private func handleSelectImage(_ image: UIImage)  {
         Task {
             await viewModel.addPicture(image: image)
+        }
+    }
+    
+    private func deletePicture(_ picture: Picture)  {
+        Task {
+            await viewModel.deletePicture(picture: picture)
         }
     }
 }
