@@ -30,7 +30,7 @@ class GalleryViewModel: ObservableObject {
             isLoading = true
             
             do {
-                pictures = try await galleryRepository.getGallery().data
+                pictures = try await galleryRepository.getGallery()
             } catch {
                 self.error = error
             }
@@ -47,19 +47,42 @@ class GalleryViewModel: ObservableObject {
         isLoading = true
         
         do {
-            let newPicture = try await galleryRepository.addPicture(image: image)
-            pictures.insert(newPicture.data, at: 0)
+            let responde = try await galleryRepository.addPicture(image: image)
+            if responde.success {
+                let newPicture = responde.data
+                pictures.insert(newPicture, at: 0)
+                print("Image added successfully")
+            } else {
+                print("Unable to add image")
+            }
             await getGallery()
         } catch {
             self.error = error
             print("Error", error)
         }
+        
         isLoading = false
     }
     
     @MainActor
     func deletePicture(picture: Picture) async {
-        print("Quieres eliminar esta imagen: \(picture)")
+        error = nil
+        isLoading = true
         
+        do {
+            let response = try await galleryRepository.deletePicture(imageHash: picture.deletehash)
+            if response {
+                print("Image deleted successfully with id: \(picture.id)")
+                pictures.removeAll{$0.deletehash == picture.deletehash}
+            } else {
+                print("Unable to delete image with id: \(picture.id)")
+            }
+            await getGallery()
+        } catch {
+            self.error = error
+            print("Error", error)
+        }
+        
+        isLoading = false
     }
 }

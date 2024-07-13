@@ -67,7 +67,7 @@ class URLSessionNetworkClient: NetworkClient {
         return try await call(urlRequest: urlRequest)
     }
     
-    func postImage<T>(token: String, url: String, body: Encodable?) async throws -> T where T : Decodable {
+    func postImageCall<T>(token: String, url: String, body: Encodable?) async throws -> T where T : Decodable {
         guard let url = URL(string: url) else {
             throw NetworkError.badUrl
         }
@@ -86,15 +86,16 @@ class URLSessionNetworkClient: NetworkClient {
         return try await call(urlRequest: urlRequest)
     }
 
-    func deleteCall<T>(token: String, url: String) async throws -> T where T : Decodable {
+    func deleteImageCall<T>(token: String, url: String) async throws -> T where T : Decodable {
         guard let url = URL(string: url) else {
             throw NetworkError.badUrl
         }
         
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "DELETE"
         urlRequest.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        urlRequest.httpMethod = "DELETE"
         
         return try await call(urlRequest: urlRequest)
         

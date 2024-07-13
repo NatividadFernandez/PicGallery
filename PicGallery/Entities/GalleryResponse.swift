@@ -14,9 +14,9 @@ struct GalleryResponse: Codable {
     let status: Int
 }
 
-// MARK: - PictureResponse
-struct PictureResponse: Codable {
-    let data: Picture
+// MARK: - GenericPictureResponse
+struct GenericPictureResponse<T: Codable>: Codable {
+    let data: T
     let success: Bool
     let status: Int
 }
@@ -54,7 +54,6 @@ struct Picture: Codable, Identifiable {
         case deletehash, name, link
     }
     
-    // Ejemplo estático de Picture
     static var example: Picture {
         return Picture(
             id: "abc123",
@@ -82,7 +81,4 @@ struct Picture: Codable, Identifiable {
             link: "https://imgur.com/gallery/abc123"
         )
     }
-
 }
-
-

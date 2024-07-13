@@ -9,8 +9,12 @@ import Foundation
 
 struct MockGalleryRemoteService: GalleryRemoteService {
     
-    func uploadPicture(token: String, uploadBody: [String : String]) async throws -> PictureResponse {
-        return PictureResponse(data: Picture(
+    func deletePicture(token: String, imageHash: String) async throws -> GenericPictureResponse<Bool> {
+        return GenericPictureResponse(data: true, success: true, status: 200)
+    }
+    
+    func uploadPicture(token: String, uploadBody: [String : String]) async throws -> GenericPictureResponse<Picture> {
+        return GenericPictureResponse(data: Picture(
             id: UUID().uuidString,
             title: "Example title",
             description: "Example description",

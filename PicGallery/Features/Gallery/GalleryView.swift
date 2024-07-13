@@ -40,11 +40,10 @@ struct GalleryView: View {
                         Spacer()
                     } else {
                         ForEach(viewModel.pictures) { picture in
-                            GalleryRowView(picture: picture)
-                                .onLongPressGesture{
-                                    selectedPicture = picture
-                                    showAlert = true
-                                }
+                            GalleryRowView(picture: picture) {
+                                selectedPicture = picture
+                                showAlert = true
+                            }
                         }
                     }
                 }
@@ -127,8 +126,6 @@ struct GalleryView: View {
         }
     }
 }
-
-
 
 #Preview {
     let coordinator = Coordinator(mock: false)

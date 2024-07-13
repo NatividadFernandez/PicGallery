@@ -10,6 +10,7 @@ import SwiftUI
 struct GalleryRowView: View {
     
     let picture: Picture
+    let onLongPress: () -> Void
     
     var body: some View {
         VStack {
@@ -37,10 +38,12 @@ struct GalleryRowView: View {
         .cornerRadius(10)
         .shadow(radius: 1)
         .frame(width: 160, height: 150)
+        .onTapGesture {}
+        .onLongPressGesture(perform: onLongPress)
         
     }
 }
 
 #Preview {
-    GalleryRowView(picture: .example)
+    GalleryRowView(picture: .example, onLongPress: {})
 }
