@@ -103,10 +103,10 @@ struct GalleryView: View {
             .padding()
         }
         .sheet(isPresented: $isImagePickerPresented) {
-            ImagePicker(selectedImage: $selectedImage, isPresented: $isImagePickerPresented, sourceType: sourceType)
+            ImagePicker(selectedImage: $selectedImage, isPresented: $isImagePickerPresented, sourceType: .photoLibrary)
         }
         .sheet(isPresented: $isCameraPresented) {
-            ImagePicker(selectedImage: $selectedImage, isPresented: $isCameraPresented, sourceType: sourceType)
+            ImagePicker(selectedImage: $selectedImage, isPresented: $isCameraPresented, sourceType: .camera)
         }
         .sheet(isPresented: $isFilePickerPresented) {
             FileDocumentPicker(selectedImage: $selectedImage, isPresented: $isFilePickerPresented, errorMessage: $errorMessage)
@@ -139,19 +139,20 @@ struct GalleryView: View {
             )
         }
         .actionSheet(isPresented: $showActionSheet) {
-                    ActionSheet(
-                        title: Text("Select an option"),
-                        buttons: [
-                            .default(Text("Photo Library")) {
-                                isImagePickerPresented = true
-                            },
-                            .default(Text("File Explorer")) {
-                                isFilePickerPresented = true
-                            },
-                            .cancel()
-                        ]
-                    )
-                }
+            ActionSheet(
+                title: Text("Select an option"),
+                buttons: [
+                    .default(Text("Photo Library")) {
+                        sourceType = .photoLibrary
+                        isImagePickerPresented = true
+                    },
+                    .default(Text("File Explorer")) {
+                        isFilePickerPresented = true
+                    },
+                    .cancel()
+                ]
+            )
+        }
 
 
     }
@@ -178,6 +179,7 @@ struct GalleryView: View {
         case .camera:
             isTakingPicture = result
         default:
+            isImportingPicture = result
             break
         }
     }

@@ -55,7 +55,6 @@ class GalleryViewModel: ObservableObject {
             } else {
                 print("Unable to add image")
             }
-            //await getGallery()
         } catch {
             self.error = error
         }
@@ -76,7 +75,6 @@ class GalleryViewModel: ObservableObject {
             } else {
                 print("Unable to delete image with id: \(picture.id)")
             }
-            //await getGallery()
         } catch {
             self.error = error
         }
