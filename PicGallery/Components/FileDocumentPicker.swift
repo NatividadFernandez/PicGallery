@@ -44,7 +44,6 @@ struct FileDocumentPicker: UIViewControllerRepresentable {
         }
 
         func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-            print("Entras aqui")
             parent.isPresented = false
         }
     }

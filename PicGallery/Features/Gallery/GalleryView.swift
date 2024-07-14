@@ -27,8 +27,6 @@ struct GalleryView: View {
     @State private var isTakingPicture = false
     @State private var showActionSheet = false
     
-    
-    
     init(viewModel: GalleryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -38,13 +36,9 @@ struct GalleryView: View {
             Text("Gallery")
                 .font(.title)
                 .padding(.top, 15)
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    if viewModel.isLoading && viewModel.pictures.isEmpty {
-                        Spacer()
-                        ProgressView()
-                        Spacer()
-                    } else {
+            ZStack {
+                ScrollView {
+                    LazyVGrid(columns: columns) {
                         ForEach(viewModel.pictures) { picture in
                             GalleryRowView(picture: picture) {
                                 selectedPicture = picture
@@ -52,27 +46,33 @@ struct GalleryView: View {
                             }
                         }
                     }
+                    .padding([.horizontal, .bottom])
+                    .padding(.top, 0)
+                }.task {
+                    await viewModel.getGallery()
+                }.refreshable {
+                    await viewModel.getGallery()
                 }
-                .padding(.horizontal)
-                .padding(.bottom)
-                .padding(.top, 0)
+                if viewModel.isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                } else if (viewModel.pictures.isEmpty) {
+                    Text("No hay fotos para mostrar")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                    
+                }
             }
-            .refreshable {
-                await viewModel.getGallery()
-            }
-            .task {
-                await viewModel.getGallery()
-            }
+                 
             Spacer()
+            
             VStack(spacing: 10) {
                 Button(action: {
-                    //sourceType = .photoLibrary
-                    //isImagePickerPresented = true
                     showActionSheet = true
                 }) {
                     Text("Import picture")
                         .foregroundColor(.white)
-                        .padding()
+                        .padding(10)
                         .frame(maxWidth: .infinity)
                         .background(Color.blue)
                         .cornerRadius(8)
@@ -88,10 +88,9 @@ struct GalleryView: View {
                     isCameraPresented = true
                 }) {
                     Text("Take picture")
-                        .foregroundColor(.white)
-                        .padding()
+                        .padding(10)
                         .frame(maxWidth: .infinity)
-                        .background(Color.green)
+                        .background(Color.gray.opacity(0.2))
                         .cornerRadius(8)
                         .overlay(content: {
                             if isTakingPicture {
@@ -153,10 +152,7 @@ struct GalleryView: View {
                 ]
             )
         }
-
-
     }
-    
     
     private func handleSelectImage(_ image: UIImage)  {
         Task {
