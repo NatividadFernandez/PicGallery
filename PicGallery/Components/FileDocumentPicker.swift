@@ -35,6 +35,7 @@ struct FileDocumentPicker: UIViewControllerRepresentable {
                 if let image = UIImage(data: imageData) {
                     parent.selectedImage = image
                 } else {
+                    
                     parent.errorMessage = "The selected file is not an image."
                 }
             } catch {

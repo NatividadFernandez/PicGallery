@@ -14,11 +14,11 @@ class LoginViewModel: ObservableObject {
     @Published var error: Error?
     @Published var authorizationURL: URL?
     
-    
-    @Published var messageError = ""
-    @Published var showMessage = false
+    @Published var messageError = "Authorization error"
+    @Published var showError = false
     @Published var isActive = false
     @Published var isLoggedIn = false
+    @Published var activeAlert: ActiveAlertLogin?
 
     
     init(tokenRespository: TokenRepository) {
@@ -34,6 +34,7 @@ class LoginViewModel: ObservableObject {
             self.authorizationURL = url
         } catch (let error) {
             self.error = error
+            activeAlert = .showAlertViewModel
         }
         
         isLoading = false
@@ -46,13 +47,13 @@ class LoginViewModel: ObservableObject {
         do {
             let saveToken = try await tokenRespository.saveAccessToken(url: url)
             if !saveToken {
-                messageError = "Authorization error"
-                showMessage = true
+                activeAlert = .showAlertViewModel
             } else {
                 self.isActive = true
             }
         } catch (let error) {
             self.error = error
+            activeAlert = .showAlertViewModel
         }
         
         isLoading = false
@@ -66,10 +67,14 @@ class LoginViewModel: ObservableObject {
             isLoggedIn = try await tokenRespository.checkSession()
         } catch (let error) {
             self.error = error
+            activeAlert = .showAlertViewModel
         }
         
         isLoading = false
     }
   
-    
 }
+
+
+
+

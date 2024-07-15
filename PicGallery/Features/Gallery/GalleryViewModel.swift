@@ -18,9 +18,10 @@ class GalleryViewModel: ObservableObject {
     @Published var pictures: [Picture] = []
     @Published var error: Error?
     @Published var alertError = false
-    @Published var messageError = "There was an error"
+    @Published var messageError = "There was an error in the connection"
     @Published var isError = false
     @Published var isLoggedIn = false
+    @Published var activeAlert: ActiveAlertGallery?
     
     init(galleryRepository: GalleryRepository) {
         self.galleryRepository = galleryRepository
@@ -38,7 +39,7 @@ class GalleryViewModel: ObservableObject {
                 pictures = try await galleryRepository.getGallery()
             } catch {
                 self.error = error
-                alertError = true
+                activeAlert = .showAlertViewModel
             }
             
             isLoading = false
@@ -63,7 +64,7 @@ class GalleryViewModel: ObservableObject {
             }
         } catch {
             self.error = error
-            alertError = true
+            activeAlert = .showAlertViewModel
         }
         
         isLoading = false
@@ -84,7 +85,7 @@ class GalleryViewModel: ObservableObject {
             }
         } catch {
             self.error = error
-            alertError = true
+            activeAlert = .showAlertViewModel
         }
         
         isLoading = false
@@ -102,7 +103,7 @@ class GalleryViewModel: ObservableObject {
             }
         } catch {
             self.error = error
-            alertError = true
+            activeAlert = .showAlertViewModel
         }
         
         isLoading = false

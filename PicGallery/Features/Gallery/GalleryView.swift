@@ -42,7 +42,8 @@ struct GalleryView: View {
                                 ForEach(viewModel.pictures) { picture in
                                     GalleryRowView(picture: picture) {
                                         selectedPicture = picture
-                                        showAlert = true
+                                        //showAlert = true
+                                        viewModel.activeAlert = .showAlertDelete
                                     }
                                 }
                             }
@@ -60,7 +61,6 @@ struct GalleryView: View {
                             Text("No photos to show")
                                 .foregroundColor(.gray)
                                 .font(.headline)
-                            
                         }
                     }
                     
@@ -119,21 +119,6 @@ struct GalleryView: View {
                         showErrorAlert = true
                     }
                 }
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("Delete Picture"),
-                        message: Text("Are you sure you want to delete this picture?"),
-                        primaryButton: .destructive(Text("Delete")) {
-                            Task {
-                                if let picture = selectedPicture{
-                                    deletePicture(picture)
-                                }
-                            }
-                            
-                        },
-                        secondaryButton: .cancel()
-                    )
-                }
                 .actionSheet(isPresented: $showActionSheet) {
                     ActionSheet(
                         title: Text("Select an option"),
@@ -147,6 +132,31 @@ struct GalleryView: View {
                             .cancel()
                         ]
                     )
+                }
+                .alert(item: $viewModel.activeAlert) { activeAlert in
+                    switch activeAlert {
+                    case .showAlertViewModel:
+                        return Alert(
+                            title: Text("Error"),
+                            message: Text(viewModel.messageError),
+                            dismissButton: .default(Text("OK"))
+                        )
+                    case .showAlertDelete:
+                        return Alert(
+                            title: Text("Delete Picture"),
+                            message: Text("Are you sure you want to delete this picture?"),
+                            primaryButton: .destructive(Text("Delete")) {
+                                Task {
+                                    if let picture = selectedPicture{
+                                        deletePicture(picture)
+                                    }
+                                }
+                                
+                            },
+                            secondaryButton: .cancel()
+                        )
+                    }
+                    
                 }
                 
             }
@@ -188,6 +198,7 @@ struct GalleryView: View {
                 secondaryButton: .cancel()
             )
         }
+        
     }
 }
 
@@ -195,3 +206,35 @@ struct GalleryView: View {
     let coordinator = Coordinator(mock: true)
     return coordinator.makeGalleryView().environmentObject(coordinator)
 }
+
+
+/*.alert(item: $viewModel.activeAlert) { activeAlert in
+    switch activeAlert {
+    case .showAlertViewModel:
+        return Alert(
+            title: Text("Error"),
+            message: Text(viewModel.messageError),
+            primaryButton: .default(Text("OK")) {
+                Task {
+                    await viewModel.logout()
+                }
+            },
+            secondaryButton: .cancel()
+        )
+    case .showAlertDelete:
+        return Alert(
+            title: Text("Delete Picture"),
+            message: Text("Are you sure you want to delete this picture?"),
+            primaryButton: .destructive(Text("Delete")) {
+                Task {
+                    if let picture = selectedPicture{
+                        deletePicture(picture)
+                    }
+                }
+                
+            },
+            secondaryButton: .cancel()
+        )
+    }
+    
+}*/
