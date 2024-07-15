@@ -23,6 +23,7 @@ struct GalleryView: View {
     @State private var showErrorAlert = false
     @State private var errorMessage: String? = nil
     @State private var showActionSheet = false
+    @State private var showAlertLogout = false
     
     init(viewModel: GalleryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -46,7 +47,6 @@ struct GalleryView: View {
                     }.task {
                         await viewModel.getGallery()
                     }.refreshable {
-                        
                         await viewModel.getGallery()
                     }
                     if viewModel.isLoading {
@@ -113,7 +113,6 @@ struct GalleryView: View {
             .onChange(of: errorMessage) { oldValue, newValue in
                 if newValue != nil {
                     showErrorAlert = true
-                    
                 }
             }
             .alert(isPresented: $showAlert) {
@@ -121,9 +120,12 @@ struct GalleryView: View {
                     title: Text("Delete Picture"),
                     message: Text("Are you sure you want to delete this picture?"),
                     primaryButton: .destructive(Text("Delete")) {
-                        if let picture = selectedPicture{
-                            deletePicture(picture)
+                        Task {
+                            if let picture = selectedPicture{
+                                deletePicture(picture)
+                            }
                         }
+                        
                     },
                     secondaryButton: .cancel()
                 )
@@ -142,13 +144,13 @@ struct GalleryView: View {
                     ]
                 )
             }
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $showAlertLogout) {
                 Alert(
                     title: Text("Logout"),
                     message: Text("Are you sure you want to log out?"),
                     primaryButton: .default(Text("OK")) {
-                        if let picture = selectedPicture{
-                            deletePicture(picture)
+                        Task {
+                            await viewModel.logout()
                         }
                     },
                     secondaryButton: .cancel()
@@ -172,7 +174,9 @@ struct GalleryView: View {
     
     private func logout() -> some View {
         Button(action: {
-            
+            Task {
+                showAlertLogout = true
+            }
         }) {
             Image(systemName: "person.crop.circle.fill")
                 .frame(width: 40, height: 40)

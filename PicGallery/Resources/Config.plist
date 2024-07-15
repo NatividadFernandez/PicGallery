@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IMGUR_CLIENT_ID</key>
+	<string>bcbf46ca23831b7</string>
+	<key>IMGUR_CLIENT_SECRET</key>
+	<string>a6daaa67b9f65051b7c349605ab2006f876a1523</string>
+	<key>IMGUR_REFRESH_TOKEN</key>
+	<string>6e777331fcdca99b3d201a4a66cb61601bda54dd</string>
+</dict>
+</plist>

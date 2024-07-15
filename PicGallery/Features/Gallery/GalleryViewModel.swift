@@ -12,10 +12,13 @@ class GalleryViewModel: ObservableObject {
     
     private let galleryRepository: GalleryRepository
     private var currentTask: Task<Void, Never>? = nil
+    private let messageError = "There was an error"
     
     @Published var isLoading = false
     @Published var pictures: [Picture] = []
     @Published var error: Error?
+    @Published var showAlertError = false
+    @Published var isError = false
     
     init(galleryRepository: GalleryRepository) {
         self.galleryRepository = galleryRepository
@@ -33,6 +36,8 @@ class GalleryViewModel: ObservableObject {
                 pictures = try await galleryRepository.getGallery()
             } catch {
                 self.error = error
+                showAlertError = true
+                isError = true
             }
             
             isLoading = false
@@ -57,6 +62,8 @@ class GalleryViewModel: ObservableObject {
             }
         } catch {
             self.error = error
+            showAlertError = true
+            isError = true
         }
         
         isLoading = false
@@ -77,8 +84,28 @@ class GalleryViewModel: ObservableObject {
             }
         } catch {
             self.error = error
+            showAlertError = true
+            isError = true
         }
         
         isLoading = false
     }
+    
+    @MainActor
+    func logout() async {
+        error = nil
+        isLoading = true
+        
+        do {
+            try await galleryRepository.logout()
+            exit(0)
+        } catch {
+            self.error = error
+        }
+        
+        isLoading = false
+    }
+    
+    
+    
 }

@@ -9,9 +9,9 @@ import Foundation
 
 struct NetworkConstants {
     static let grantType = "refresh_token"
-    static let clientId = ProcessInfo.processInfo.environment["IMGUR_CLIENT_ID"]
-    static let clientSecret = ProcessInfo.processInfo.environment["IMGUR_CLIENT_SECRET"]
-    static let refreshToken = ProcessInfo.processInfo.environment["IMGUR_REFRESH_TOKEN"]
+    static let clientId = Config.shared.value(forKey: "IMGUR_CLIENT_ID")
+    static let clientSecret = Config.shared.value(forKey: "IMGUR_CLIENT_SECRET")
+    static let refreshToken = Config.shared.value(forKey:"IMGUR_REFRESH_TOKEN")
     static let bodyParams = [
         "refresh_token": refreshToken,
         "client_id": clientId,

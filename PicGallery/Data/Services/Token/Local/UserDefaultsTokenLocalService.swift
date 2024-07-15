@@ -48,5 +48,12 @@ struct UserDefaultsTokenLocalService: TokenLocalService {
         }
     }
     
+    func logout() async throws {
+        UserDefaults.standard.removeObject(forKey: tokenKey)
+        UserDefaults.standard.synchronize()
+    }
+    
+    
+    
     
 }

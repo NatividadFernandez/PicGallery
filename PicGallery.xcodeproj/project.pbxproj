@@ -41,6 +41,8 @@
 		0C4F10B82C40586C00516EF3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B72C40586C00516EF3 /* ImagePicker.swift */; };
 		0C4F10BA2C432A8300516EF3 /* FileDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B92C432A8300516EF3 /* FileDocumentPicker.swift */; };
 		0C4F10CC2C451C6200516EF3 /* ComponentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10CB2C451C6200516EF3 /* ComponentExtension.swift */; };
+		0C4F10D02C45752700516EF3 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F10CF2C45752700516EF3 /* Config.plist */; };
+		0C4F10D32C4577A300516EF3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10D22C4577A300516EF3 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,8 @@
 		0C4F10B92C432A8300516EF3 /* FileDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDocumentPicker.swift; sourceTree = "<group>"; };
 		0C4F10BB2C4404DE00516EF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0C4F10CB2C451C6200516EF3 /* ComponentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentExtension.swift; sourceTree = "<group>"; };
+		0C4F10CF2C45752700516EF3 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		0C4F10D22C4577A300516EF3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				0C4F10BB2C4404DE00516EF3 /* Info.plist */,
+				0C4F10D12C45772C00516EF3 /* Resources */,
 				0C4F10892C3DACF200516EF3 /* Animations */,
 				0C4F10462C3B307C00516EF3 /* Assets.xcassets */,
 				0C4F108C2C3DAD4900516EF3 /* Components */,
@@ -286,6 +291,7 @@
 				0C4F10B72C40586C00516EF3 /* ImagePicker.swift */,
 				0C4F10B92C432A8300516EF3 /* FileDocumentPicker.swift */,
 				0C4F10CB2C451C6200516EF3 /* ComponentExtension.swift */,
+				0C4F10D22C4577A300516EF3 /* Config.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -343,6 +349,14 @@
 			children = (
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		0C4F10D12C45772C00516EF3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0C4F10CF2C45752700516EF3 /* Config.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,6 +469,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C4F10D02C45752700516EF3 /* Config.plist in Resources */,
 				0C4F104A2C3B307C00516EF3 /* Preview Assets.xcassets in Resources */,
 				0C4F10472C3B307C00516EF3 /* Assets.xcassets in Resources */,
 				0C4F10A02C3DC01B00516EF3 /* photoAnimation.json in Resources */,
@@ -499,6 +514,7 @@
 				0C4F10B02C3DDF5300516EF3 /* MockGalleryRemoteService.swift in Sources */,
 				0C4F10AE2C3DDA6B00516EF3 /* GalleryRemoteService.swift in Sources */,
 				0C4F10A72C3DD8E500516EF3 /* GalleryViewModel.swift in Sources */,
+				0C4F10D32C4577A300516EF3 /* Config.swift in Sources */,
 				0C4F10852C3DA7C100516EF3 /* UserDefaultsTokenLocalService.swift in Sources */,
 				0C4F106E2C3D97BA00516EF3 /* NetworkError.swift in Sources */,
 				0C4F108E2C3DAD6200516EF3 /* LottieView.swift in Sources */,
