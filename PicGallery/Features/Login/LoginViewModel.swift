@@ -15,7 +15,6 @@ class LoginViewModel: ObservableObject {
     @Published var authorizationURL: URL?
     
     @Published var messageError = "Authorization error"
-    @Published var showError = false
     @Published var isActive = false
     @Published var isLoggedIn = false
     @Published var activeAlert: ActiveAlertLogin?

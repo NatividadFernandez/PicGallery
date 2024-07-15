@@ -17,9 +17,7 @@ class GalleryViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var pictures: [Picture] = []
     @Published var error: Error?
-    @Published var alertError = false
     @Published var messageError = "There was an error in the connection"
-    @Published var isError = false
     @Published var isLoggedIn = false
     @Published var activeAlert: ActiveAlertGallery?
     

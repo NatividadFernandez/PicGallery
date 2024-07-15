@@ -19,7 +19,6 @@ struct GalleryView: View {
     @State private var isFilePickerPresented = false
     @State private var selectedImage: UIImage?
     @State private var selectedPicture: Picture?
-    @State private var showAlert = false
     @State private var showErrorAlert = false
     @State private var errorMessage: String? = nil
     @State private var showActionSheet = false
@@ -42,7 +41,6 @@ struct GalleryView: View {
                                 ForEach(viewModel.pictures) { picture in
                                     GalleryRowView(picture: picture) {
                                         selectedPicture = picture
-                                        //showAlert = true
                                         viewModel.activeAlert = .showAlertDelete
                                     }
                                 }
@@ -207,34 +205,3 @@ struct GalleryView: View {
     return coordinator.makeGalleryView().environmentObject(coordinator)
 }
 
-
-/*.alert(item: $viewModel.activeAlert) { activeAlert in
-    switch activeAlert {
-    case .showAlertViewModel:
-        return Alert(
-            title: Text("Error"),
-            message: Text(viewModel.messageError),
-            primaryButton: .default(Text("OK")) {
-                Task {
-                    await viewModel.logout()
-                }
-            },
-            secondaryButton: .cancel()
-        )
-    case .showAlertDelete:
-        return Alert(
-            title: Text("Delete Picture"),
-            message: Text("Are you sure you want to delete this picture?"),
-            primaryButton: .destructive(Text("Delete")) {
-                Task {
-                    if let picture = selectedPicture{
-                        deletePicture(picture)
-                    }
-                }
-                
-            },
-            secondaryButton: .cancel()
-        )
-    }
-    
-}*/

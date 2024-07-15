@@ -11,7 +11,6 @@ struct LoginView: View {
     
     @EnvironmentObject var coordinator: Coordinator
     @StateObject var viewModel: LoginViewModel
-    //@State private var showAlertLogin = false
     
     init(viewModel: LoginViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -39,7 +38,6 @@ struct LoginView: View {
                     Task {
                         await viewModel.showWindow()
                     }
-                    //showAlertLogin = true
                     viewModel.activeAlert = .showAlertView
                 }) {
                     Text("Login")
@@ -57,30 +55,10 @@ struct LoginView: View {
             }
             .padding()
             .onOpenURL { url in
-                print(url)
                 Task {
                     await viewModel.saveAccessToken(url: url)
                 }
             }
-            /*.alert(isPresented: $viewModel.showError) {
-                Alert(
-                    title: Text("Error"),
-                    message: Text(viewModel.messageError),
-                    dismissButton: .default(Text("OK"))
-                )
-            }
-            .alert(isPresented: $showAlertLogin) {
-                Alert(
-                    title: Text("Information"),
-                    message: Text("Redirect to imgur"),
-                    primaryButton: .default(Text("OK")) {
-                        if let url = viewModel.authorizationURL {
-                            UIApplication.shared.open(url)
-                        }
-                    },
-                    secondaryButton: .cancel()
-                )
-            }*/
             .alert(item: $viewModel.activeAlert) { activeAlert in
                 switch activeAlert {
                 case .showAlertView:
@@ -106,38 +84,6 @@ struct LoginView: View {
         }
     }
 }
-
-            
-           /* VStack {
-                Button(action: {
-                    Task {
-                        await viewModel.showWindow()
-                    }
-                    
-                    print("Hola")
-                    
-                }) {
-                    Text("Login")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("Information"),
-                        message: Text("Redirect to imgur"),
-                        primaryButton: .default(Text("OK")) {
-                            if let url = viewModel.authorizationURL {
-                                UIApplication.shared.open(url)
-                            }
-                        },
-                        secondaryButton: .cancel()
-                    )
-                }
-            }
-            .padding() */
-
 
 #Preview {
     let coordinator = Coordinator(mock: true)
