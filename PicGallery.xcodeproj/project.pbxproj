@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C4F10432C3B307A00516EF3 /* PicGalleryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10422C3B307A00516EF3 /* PicGalleryApp.swift */; };
-		0C4F10452C3B307A00516EF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10442C3B307A00516EF3 /* ContentView.swift */; };
+		0C4F10452C3B307A00516EF3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10442C3B307A00516EF3 /* LoginView.swift */; };
 		0C4F10472C3B307C00516EF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F10462C3B307C00516EF3 /* Assets.xcassets */; };
 		0C4F104A2C3B307C00516EF3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F10492C3B307C00516EF3 /* Preview Assets.xcassets */; };
 		0C4F10542C3B307C00516EF3 /* PicGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10532C3B307C00516EF3 /* PicGalleryTests.swift */; };
@@ -27,7 +27,7 @@
 		0C4F108E2C3DAD6200516EF3 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F108D2C3DAD6200516EF3 /* LottieView.swift */; };
 		0C4F10922C3DB2D200516EF3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0C4F10912C3DB2D200516EF3 /* Lottie */; };
 		0C4F10942C3DB31600516EF3 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10932C3DB31600516EF3 /* Coordinator.swift */; };
-		0C4F10982C3DB4BC00516EF3 /* SplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10972C3DB4BC00516EF3 /* SplashScreenViewModel.swift */; };
+		0C4F10982C3DB4BC00516EF3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10972C3DB4BC00516EF3 /* LoginViewModel.swift */; };
 		0C4F109C2C3DB7AC00516EF3 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F109B2C3DB7AC00516EF3 /* SplashScreenView.swift */; };
 		0C4F10A02C3DC01B00516EF3 /* photoAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F109F2C3DC01B00516EF3 /* photoAnimation.json */; };
 		0C4F10A22C3DD0DA00516EF3 /* GalleryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10A12C3DD0DA00516EF3 /* GalleryResponse.swift */; };
@@ -40,6 +40,7 @@
 		0C4F10B62C3DE86500516EF3 /* GalleryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B52C3DE86500516EF3 /* GalleryRowView.swift */; };
 		0C4F10B82C40586C00516EF3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B72C40586C00516EF3 /* ImagePicker.swift */; };
 		0C4F10BA2C432A8300516EF3 /* FileDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10B92C432A8300516EF3 /* FileDocumentPicker.swift */; };
+		0C4F10CC2C451C6200516EF3 /* ComponentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10CB2C451C6200516EF3 /* ComponentExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +63,7 @@
 /* Begin PBXFileReference section */
 		0C4F103F2C3B307A00516EF3 /* PicGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4F10422C3B307A00516EF3 /* PicGalleryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicGalleryApp.swift; sourceTree = "<group>"; };
-		0C4F10442C3B307A00516EF3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0C4F10442C3B307A00516EF3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0C4F10462C3B307C00516EF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C4F10492C3B307C00516EF3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0C4F104F2C3B307C00516EF3 /* PicGalleryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicGalleryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,7 +83,7 @@
 		0C4F10872C3DA9DC00516EF3 /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
 		0C4F108D2C3DAD6200516EF3 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		0C4F10932C3DB31600516EF3 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		0C4F10972C3DB4BC00516EF3 /* SplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewModel.swift; sourceTree = "<group>"; };
+		0C4F10972C3DB4BC00516EF3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0C4F109B2C3DB7AC00516EF3 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		0C4F109F2C3DC01B00516EF3 /* photoAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = photoAnimation.json; path = ../../../../../Downloads/photoAnimation.json; sourceTree = "<group>"; };
 		0C4F10A12C3DD0DA00516EF3 /* GalleryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryResponse.swift; sourceTree = "<group>"; };
@@ -95,6 +96,8 @@
 		0C4F10B52C3DE86500516EF3 /* GalleryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRowView.swift; sourceTree = "<group>"; };
 		0C4F10B72C40586C00516EF3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0C4F10B92C432A8300516EF3 /* FileDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDocumentPicker.swift; sourceTree = "<group>"; };
+		0C4F10BB2C4404DE00516EF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0C4F10CB2C451C6200516EF3 /* ComponentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,7 @@
 		0C4F10412C3B307A00516EF3 /* PicGallery */ = {
 			isa = PBXGroup;
 			children = (
+				0C4F10BB2C4404DE00516EF3 /* Info.plist */,
 				0C4F10892C3DACF200516EF3 /* Animations */,
 				0C4F10462C3B307C00516EF3 /* Assets.xcassets */,
 				0C4F108C2C3DAD4900516EF3 /* Components */,
@@ -154,7 +158,6 @@
 				0C4F10952C3DB48B00516EF3 /* Features */,
 				0C4F106C2C3D973900516EF3 /* NetworkClient */,
 				0C4F10482C3B307C00516EF3 /* Preview Content */,
-				0C4F10442C3B307A00516EF3 /* ContentView.swift */,
 				0C4F10932C3DB31600516EF3 /* Coordinator.swift */,
 				0C4F10422C3B307A00516EF3 /* PicGalleryApp.swift */,
 			);
@@ -282,6 +285,7 @@
 				0C4F108D2C3DAD6200516EF3 /* LottieView.swift */,
 				0C4F10B72C40586C00516EF3 /* ImagePicker.swift */,
 				0C4F10B92C432A8300516EF3 /* FileDocumentPicker.swift */,
+				0C4F10CB2C451C6200516EF3 /* ComponentExtension.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -290,18 +294,19 @@
 			isa = PBXGroup;
 			children = (
 				0C4F10A32C3DD89000516EF3 /* Gallery */,
-				0C4F10962C3DB49A00516EF3 /* SplashScreen */,
+				0C4F10962C3DB49A00516EF3 /* Login */,
 			);
 			path = Features;
 			sourceTree = "<group>";
 		};
-		0C4F10962C3DB49A00516EF3 /* SplashScreen */ = {
+		0C4F10962C3DB49A00516EF3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				0C4F10972C3DB4BC00516EF3 /* SplashScreenViewModel.swift */,
+				0C4F10972C3DB4BC00516EF3 /* LoginViewModel.swift */,
 				0C4F109B2C3DB7AC00516EF3 /* SplashScreenView.swift */,
+				0C4F10442C3B307A00516EF3 /* LoginView.swift */,
 			);
-			path = SplashScreen;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		0C4F10A32C3DD89000516EF3 /* Gallery */ = {
@@ -479,6 +484,7 @@
 			files = (
 				0C4F10A22C3DD0DA00516EF3 /* GalleryResponse.swift in Sources */,
 				0C4F10792C3D9FFE00516EF3 /* NetworkConstants.swift in Sources */,
+				0C4F10CC2C451C6200516EF3 /* ComponentExtension.swift in Sources */,
 				0C4F10B82C40586C00516EF3 /* ImagePicker.swift in Sources */,
 				0C4F10B62C3DE86500516EF3 /* GalleryRowView.swift in Sources */,
 				0C4F10832C3DA75E00516EF3 /* TokenLocalService.swift in Sources */,
@@ -497,12 +503,12 @@
 				0C4F106E2C3D97BA00516EF3 /* NetworkError.swift in Sources */,
 				0C4F108E2C3DAD6200516EF3 /* LottieView.swift in Sources */,
 				0C4F10B42C3DE32300516EF3 /* GalleryView.swift in Sources */,
-				0C4F10452C3B307A00516EF3 /* ContentView.swift in Sources */,
+				0C4F10452C3B307A00516EF3 /* LoginView.swift in Sources */,
 				0C4F10882C3DA9DC00516EF3 /* TokenRepository.swift in Sources */,
 				0C4F10752C3D9DA100516EF3 /* TokenResponse.swift in Sources */,
 				0C4F10432C3B307A00516EF3 /* PicGalleryApp.swift in Sources */,
 				0C4F10AC2C3DDA5400516EF3 /* LiveGalleryRemoteService.swift in Sources */,
-				0C4F10982C3DB4BC00516EF3 /* SplashScreenViewModel.swift in Sources */,
+				0C4F10982C3DB4BC00516EF3 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,6 +674,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PicGallery/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				IMGUR_CLIENT_ID = bcbf46ca23831b7;
+				IMGUR_CLIENT_SECRET = a6daaa67b9f65051b7c349605ab2006f876a1523;
+				IMGUR_REFRESH_TOKEN = 6e777331fcdca99b3d201a4a66cb61601bda54dd;
+				INFOPLIST_FILE = PicGallery/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use your camera for taking pictures";
 				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Permission to access documents folder is required to import files.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Permission to access photo library is required to import pictures.";
@@ -700,6 +710,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PicGallery/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				IMGUR_CLIENT_ID = bcbf46ca23831b7;
+				IMGUR_CLIENT_SECRET = a6daaa67b9f65051b7c349605ab2006f876a1523;
+				IMGUR_REFRESH_TOKEN = 6e777331fcdca99b3d201a4a66cb61601bda54dd;
+				INFOPLIST_FILE = PicGallery/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use your camera for taking pictures";
 				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Permission to access documents folder is required to import files.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Permission to access photo library is required to import pictures.";

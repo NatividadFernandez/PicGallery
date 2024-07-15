@@ -51,13 +51,14 @@ struct GalleryView: View {
                 }.task {
                     await viewModel.getGallery()
                 }.refreshable {
+                    
                     await viewModel.getGallery()
                 }
                 if viewModel.isLoading {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .blue))
                 } else if (viewModel.pictures.isEmpty) {
-                    Text("No hay fotos para mostrar")
+                    Text("No photos to show")
                         .foregroundColor(.gray)
                         .font(.headline)
                     

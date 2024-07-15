@@ -8,11 +8,10 @@
 import Foundation
 
 struct NetworkConstants {
-    static let clientId = "bcbf46ca23831b7"
-    static let clientSecret = "a6daaa67b9f65051b7c349605ab2006f876a1523"
     static let grantType = "refresh_token"
-    static let authNetworkUrl = "https://api.imgur.com/oauth2/token"
-    static let refreshToken = "6e777331fcdca99b3d201a4a66cb61601bda54dd"
+    static let clientId = ProcessInfo.processInfo.environment["IMGUR_CLIENT_ID"]
+    static let clientSecret = ProcessInfo.processInfo.environment["IMGUR_CLIENT_SECRET"]
+    static let refreshToken = ProcessInfo.processInfo.environment["IMGUR_REFRESH_TOKEN"]
     static let bodyParams = [
         "refresh_token": refreshToken,
         "client_id": clientId,
@@ -20,9 +19,13 @@ struct NetworkConstants {
         "grant_type": grantType
     ]
     
+    static let autorizeUrl = "https://api.imgur.com/oauth2/authorize"
+    //static let authNetworkUrl = "https://api.imgur.com/oauth2/token"
     static let baseUrl = "https://api.imgur.com/3"
     static let galleryUrl = "\(baseUrl)/account/me/images"
     static let uploadImageUrl = "\(baseUrl)/image"
     static let deleteImageUrl = "\(baseUrl)/image/"
     
 }
+
+

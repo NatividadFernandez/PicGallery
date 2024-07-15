@@ -25,10 +25,15 @@ class Coordinator: ObservableObject {
     
     // MARK: SplashScreenView
     func makeSplashScreenView() -> SplashScreenView {
-        return SplashScreenView(viewModel: makeSplashScreenViewModel())
+        return SplashScreenView(viewModel: makeLoginViewModel())
     }
     
-    func makeSplashScreenViewModel() -> SplashScreenViewModel {
+    // MARK: LoginView
+    func makeLoginView() -> LoginView {
+        return LoginView(viewModel: makeLoginViewModel())
+    }
+    
+    func makeLoginViewModel() -> LoginViewModel {
         return .init(tokenRespository: tokenRepository)
     }
     
@@ -40,4 +45,7 @@ class Coordinator: ObservableObject {
     func makeGalleryViewModel() -> GalleryViewModel {
         return .init(galleryRepository: galleryRepository)
     }
+    
+    
+    
 }

@@ -13,6 +13,7 @@ struct TokenResponse: Codable {
     let tokenType: String?
     let scope: String?
     let refreshToken: String?
+    let accountUsername: String?
     
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
@@ -20,5 +21,6 @@ struct TokenResponse: Codable {
         case tokenType = "token_type"
         case scope
         case refreshToken = "refresh_token"
+        case accountUsername = "account_username"
     }
 }

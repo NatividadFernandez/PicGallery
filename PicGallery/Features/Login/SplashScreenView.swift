@@ -10,20 +10,23 @@ import SwiftUI
 struct SplashScreenView: View {
     
     @EnvironmentObject var coordinator: Coordinator
-    @StateObject var viewModel: SplashScreenViewModel
+    @StateObject var viewModel: LoginViewModel
     
-    init(viewModel: SplashScreenViewModel) {
+    init(viewModel: LoginViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     @State private var isActive = false
     @State private var size = 0.2
     @State private var opacity = 0.5
-        
+    
     var body: some View {
+        NavigationView {
             if isActive {
                 //ContentView()
-                coordinator.makeGalleryView()
+                //coordinator.makeGalleryView()
+                coordinator.makeLoginView()
+                
             } else {
                 VStack {
                     
@@ -31,7 +34,7 @@ struct SplashScreenView: View {
                         LottieView(loopMode: .loop, animationName: "photoAnimation")
                         Text("PicGallery")
                             .font(Font.custom("Monserrat", size: 80))
-                            //.foregroundColor(.purpleLight.opacity(0.80))
+                        //.foregroundColor(.purpleLight.opacity(0.80))
                         
                     }
                     .scaleEffect(size)
@@ -46,7 +49,7 @@ struct SplashScreenView: View {
                 }
                 .onAppear {
                     Task {
-                        await viewModel.createAccessToken()
+                        //await viewModel.createAccessToken()
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                             self.isActive = true
@@ -56,6 +59,7 @@ struct SplashScreenView: View {
             }
         }
     }
+}
 
 #Preview {
     let coordinator = Coordinator(mock: true)

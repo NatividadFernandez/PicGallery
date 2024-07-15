@@ -13,7 +13,9 @@ struct PicGalleryApp: App {
     var body: some Scene {
         WindowGroup {
             coordinator.makeSplashScreenView().environmentObject(coordinator)
+            //coordinator.makeContentView().environmentObject(coordinator)
             //ContentView()
         }
     }
 }
+
