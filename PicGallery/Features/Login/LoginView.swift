@@ -89,38 +89,6 @@ struct LoginView: View {
     }
 }
 
-            
-           /* VStack {
-                Button(action: {
-                    Task {
-                        await viewModel.showWindow()
-                    }
-                    
-                    print("Hola")
-                    
-                }) {
-                    Text("Login")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("Information"),
-                        message: Text("Redirect to imgur"),
-                        primaryButton: .default(Text("OK")) {
-                            if let url = viewModel.authorizationURL {
-                                UIApplication.shared.open(url)
-                            }
-                        },
-                        secondaryButton: .cancel()
-                    )
-                }
-            }
-            .padding() */
-
-
 #Preview {
     let coordinator = Coordinator(mock: true)
     return coordinator.makeLoginView().environmentObject(coordinator)

@@ -13,9 +13,12 @@ class LoginViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: Error?
     @Published var authorizationURL: URL?
+    
+    
     @Published var messageError = ""
     @Published var showMessage = false
-    @Published  var isActive = false
+    @Published var isActive = false
+    @Published var isLoggedIn = false
 
     
     init(tokenRespository: TokenRepository) {
@@ -48,6 +51,19 @@ class LoginViewModel: ObservableObject {
             } else {
                 self.isActive = true
             }
+        } catch (let error) {
+            self.error = error
+        }
+        
+        isLoading = false
+    }
+    
+    @MainActor
+    func checkSession() async {
+        error = nil
+        isLoading = true
+        do {
+            isLoggedIn = try await tokenRespository.checkSession()
         } catch (let error) {
             self.error = error
         }

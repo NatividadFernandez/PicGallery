@@ -36,7 +36,7 @@ struct GalleryRepository {
         return try await remoteService.deletePicture(token: token, imageHash: imageHash)
     }
     
-    func logout() async throws {
-        try await localTokenService.logout()
+    func logout() async throws -> Bool {
+        return try await localTokenService.logout()
     }
 }

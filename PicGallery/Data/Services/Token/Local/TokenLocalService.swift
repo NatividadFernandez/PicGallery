@@ -10,5 +10,6 @@ import Foundation
 protocol TokenLocalService {
     func saveAccessToken(url: URL) async throws -> Bool
     func getAccessToken() async throws -> String
-    func logout() async throws
+    func logout() async throws -> Bool
+    func checkSession() async throws -> Bool
 }

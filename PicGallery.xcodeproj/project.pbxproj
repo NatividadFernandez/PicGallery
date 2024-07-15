@@ -261,8 +261,8 @@
 		0C4F10812C3DA6DB00516EF3 /* Local */ = {
 			isa = PBXGroup;
 			children = (
-				0C4F10822C3DA75E00516EF3 /* TokenLocalService.swift */,
 				0C4F10842C3DA7C100516EF3 /* UserDefaultsTokenLocalService.swift */,
+				0C4F10822C3DA75E00516EF3 /* TokenLocalService.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -309,8 +309,8 @@
 			isa = PBXGroup;
 			children = (
 				0C4F10972C3DB4BC00516EF3 /* LoginViewModel.swift */,
-				0C4F109B2C3DB7AC00516EF3 /* SplashScreenView.swift */,
 				0C4F10442C3B307A00516EF3 /* LoginView.swift */,
+				0C4F109B2C3DB7AC00516EF3 /* SplashScreenView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";

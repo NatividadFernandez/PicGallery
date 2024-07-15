@@ -25,4 +25,12 @@ struct TokenRepository {
         try await localService.saveAccessToken(url: url)
     }
     
+    func checkSession() async throws -> Bool {
+        try await localService.checkSession()
+    }
+    
+    func logout() async throws -> Bool {
+        try await localService.logout()
+    }
+    
 }

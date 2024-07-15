@@ -48,9 +48,16 @@ struct UserDefaultsTokenLocalService: TokenLocalService {
         }
     }
     
-    func logout() async throws {
+    func logout() async throws -> Bool {
         UserDefaults.standard.removeObject(forKey: tokenKey)
         UserDefaults.standard.synchronize()
+        
+        return try await checkSession()
+    }
+    
+    func checkSession() async throws -> Bool {
+        let sessionToken = UserDefaults.standard.string(forKey: tokenKey) // User y nil son distintos? NO, por tanto false
+        return sessionToken != nil
     }
     
     

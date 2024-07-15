@@ -10,15 +10,17 @@ import SwiftUI
 
 class GalleryViewModel: ObservableObject {
     
+    @EnvironmentObject var coordinator: Coordinator
     private let galleryRepository: GalleryRepository
     private var currentTask: Task<Void, Never>? = nil
-    private let messageError = "There was an error"
     
     @Published var isLoading = false
     @Published var pictures: [Picture] = []
     @Published var error: Error?
-    @Published var showAlertError = false
+    @Published var alertError = false
+    @Published var messageError = "There was an error"
     @Published var isError = false
+    @Published var isLoggedIn = false
     
     init(galleryRepository: GalleryRepository) {
         self.galleryRepository = galleryRepository
@@ -36,8 +38,7 @@ class GalleryViewModel: ObservableObject {
                 pictures = try await galleryRepository.getGallery()
             } catch {
                 self.error = error
-                showAlertError = true
-                isError = true
+                alertError = true
             }
             
             isLoading = false
@@ -62,8 +63,7 @@ class GalleryViewModel: ObservableObject {
             }
         } catch {
             self.error = error
-            showAlertError = true
-            isError = true
+            alertError = true
         }
         
         isLoading = false
@@ -84,8 +84,7 @@ class GalleryViewModel: ObservableObject {
             }
         } catch {
             self.error = error
-            showAlertError = true
-            isError = true
+            alertError = true
         }
         
         isLoading = false
@@ -97,10 +96,13 @@ class GalleryViewModel: ObservableObject {
         isLoading = true
         
         do {
-            try await galleryRepository.logout()
-            exit(0)
+            isLoggedIn = try await galleryRepository.logout()
+            if !isLoggedIn {
+                isLoggedIn = true
+            }
         } catch {
             self.error = error
+            alertError = true
         }
         
         isLoading = false
