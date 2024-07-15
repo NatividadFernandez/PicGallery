@@ -13,6 +13,10 @@ class LoginViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: Error?
     @Published var authorizationURL: URL?
+    @Published var messageError = ""
+    @Published var showMessage = false
+    @Published  var isActive = false
+
     
     init(tokenRespository: TokenRepository) {
         self.tokenRespository = tokenRespository
@@ -37,7 +41,13 @@ class LoginViewModel: ObservableObject {
         error = nil
         isLoading = true
         do {
-            try await tokenRespository.saveAccessToken(url: url)
+            let saveToken = try await tokenRespository.saveAccessToken(url: url)
+            if !saveToken {
+                messageError = "Authorization error"
+                showMessage = true
+            } else {
+                self.isActive = true
+            }
         } catch (let error) {
             self.error = error
         }

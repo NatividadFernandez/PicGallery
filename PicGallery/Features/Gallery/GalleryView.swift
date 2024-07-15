@@ -29,114 +29,132 @@ struct GalleryView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("Gallery")
-                .font(.title)
-                .padding(.top, 15)
-            ZStack {
-                ScrollView {
-                    LazyVGrid(columns: columns) {
-                        ForEach(viewModel.pictures) { picture in
-                            GalleryRowView(picture: picture) {
-                                selectedPicture = picture
-                                showAlert = true
+        NavigationStack {
+            VStack {
+                ZStack {
+                    ScrollView {
+                        LazyVGrid(columns: columns) {
+                            ForEach(viewModel.pictures) { picture in
+                                GalleryRowView(picture: picture) {
+                                    selectedPicture = picture
+                                    showAlert = true
+                                }
                             }
                         }
+                        .padding([.horizontal, .bottom])
+                        .padding(.top, 0)
+                    }.task {
+                        await viewModel.getGallery()
+                    }.refreshable {
+                        
+                        await viewModel.getGallery()
                     }
-                    .padding([.horizontal, .bottom])
-                    .padding(.top, 0)
-                }.task {
-                    await viewModel.getGallery()
-                }.refreshable {
-                    
-                    await viewModel.getGallery()
-                }
-                if viewModel.isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                } else if (viewModel.pictures.isEmpty) {
-                    Text("No photos to show")
-                        .foregroundColor(.gray)
-                        .font(.headline)
-                    
-                }
-            }
-                 
-            Spacer()
-            
-            VStack(spacing: 10) {
-                Button(action: {
-                    showActionSheet = true
-                }) {
-                    Text("Import picture")
-                        .foregroundColor(.white)
-                        .padding(10)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(8)
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                    } else if (viewModel.pictures.isEmpty) {
+                        Text("No photos to show")
+                            .foregroundColor(.gray)
+                            .font(.headline)
+                        
+                    }
                 }
                 
-                Button(action: {
-                    isCameraPresented = true
-                }) {
-                    Text("Take picture")
-                        .padding(10)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(8)
+                Spacer()
+                
+                VStack(spacing: 10) {
+                    Button(action: {
+                        showActionSheet = true
+                    }) {
+                        Text("Import picture")
+                            .foregroundColor(.white)
+                            .padding(10)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                    }
+                    
+                    Button(action: {
+                        isCameraPresented = true
+                    }) {
+                        Text("Take picture")
+                            .padding(10)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(8)
+                    }
                 }
+                .padding()
             }
-            .padding()
-        }
-        .sheet(isPresented: $isImagePickerPresented) {
-            ImagePicker(selectedImage: $selectedImage, isPresented: $isImagePickerPresented, sourceType: .photoLibrary)
-        }
-        .sheet(isPresented: $isCameraPresented) {
-            ImagePicker(selectedImage: $selectedImage, isPresented: $isCameraPresented, sourceType: .camera)
-        }
-        .sheet(isPresented: $isFilePickerPresented) {
-            FileDocumentPicker(selectedImage: $selectedImage, isPresented: $isFilePickerPresented, errorMessage: $errorMessage)
-        }
-        .onChange(of: selectedImage) { oldImage, newImage in
-            if let newImage = newImage {
-                handleSelectImage(newImage)
+            .navigationTitle("Gallery")
+            .navigationBarTitleDisplayMode(.inline)
+            //.navigationBarBackButtonHidden(true)
+            .toolbar {
+                logout()
             }
-            
-        }
-        .alert(isPresented: $showErrorAlert) {
-                    Alert(title: Text("Error"), message: Text(errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK")))
+            .sheet(isPresented: $isImagePickerPresented) {
+                ImagePicker(selectedImage: $selectedImage, isPresented: $isImagePickerPresented, sourceType: .photoLibrary)
+            }
+            .sheet(isPresented: $isCameraPresented) {
+                ImagePicker(selectedImage: $selectedImage, isPresented: $isCameraPresented, sourceType: .camera)
+            }
+            .sheet(isPresented: $isFilePickerPresented) {
+                FileDocumentPicker(selectedImage: $selectedImage, isPresented: $isFilePickerPresented, errorMessage: $errorMessage)
+            }
+            .onChange(of: selectedImage) { oldImage, newImage in
+                if let newImage = newImage {
+                    handleSelectImage(newImage)
                 }
-        .onChange(of: errorMessage) { oldValue, newValue in
-            if newValue != nil {
-                showErrorAlert = true
                 
             }
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("Delete Picture"),
-                message: Text("Are you sure you want to delete this picture?"),
-                primaryButton: .destructive(Text("Delete")) {
-                    if let picture = selectedPicture{
-                        deletePicture(picture)
-                    }
-                },
-                secondaryButton: .cancel()
-            )
-        }
-        .actionSheet(isPresented: $showActionSheet) {
-            ActionSheet(
-                title: Text("Select an option"),
-                buttons: [
-                    .default(Text("Photo Library")) {
-                        isImagePickerPresented = true
+            .alert(isPresented: $showErrorAlert) {
+                Alert(title: Text("Error"), message: Text(errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK")))
+            }
+            .onChange(of: errorMessage) { oldValue, newValue in
+                if newValue != nil {
+                    showErrorAlert = true
+                    
+                }
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Delete Picture"),
+                    message: Text("Are you sure you want to delete this picture?"),
+                    primaryButton: .destructive(Text("Delete")) {
+                        if let picture = selectedPicture{
+                            deletePicture(picture)
+                        }
                     },
-                    .default(Text("File Explorer")) {
-                        isFilePickerPresented = true
+                    secondaryButton: .cancel()
+                )
+            }
+            .actionSheet(isPresented: $showActionSheet) {
+                ActionSheet(
+                    title: Text("Select an option"),
+                    buttons: [
+                        .default(Text("Photo Library")) {
+                            isImagePickerPresented = true
+                        },
+                        .default(Text("File Explorer")) {
+                            isFilePickerPresented = true
+                        },
+                        .cancel()
+                    ]
+                )
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Logout"),
+                    message: Text("Are you sure you want to log out?"),
+                    primaryButton: .default(Text("OK")) {
+                        if let picture = selectedPicture{
+                            deletePicture(picture)
+                        }
                     },
-                    .cancel()
-                ]
-            )
+                    secondaryButton: .cancel()
+                )
+            }
+            
         }
     }
     
@@ -149,6 +167,15 @@ struct GalleryView: View {
     private func deletePicture(_ picture: Picture)  {
         Task {
             await viewModel.deletePicture(picture: picture)
+        }
+    }
+    
+    private func logout() -> some View {
+        Button(action: {
+            
+        }) {
+            Image(systemName: "person.crop.circle.fill")
+                .frame(width: 40, height: 40)
         }
     }
 }

@@ -13,15 +13,22 @@ struct UserDefaultsTokenLocalService: TokenLocalService {
     
     func getAccessToken() async throws -> String {
         guard let data = UserDefaults.standard.data(forKey: tokenKey) else {
-            return "No llega el token"
+            return ""
         }
         
         let token = try JSONDecoder().decode(TokenResponse.self, from: data)
-        return token.accessToken ?? "No llega el token"
+        return token.accessToken ?? ""
     }
     
-    func saveAccessToken(url: URL) async throws {
+    func saveAccessToken(url: URL) async throws -> Bool {
         let parameters = url.queryParameters()
+        
+        if parameters.isEmpty {
+            let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems
+            if queryItems?.first(where: { $0.name == "error" })?.value != nil {
+                return false
+            }
+        }
         
         let token = TokenResponse(
             accessToken: parameters["access_token"],
@@ -34,8 +41,10 @@ struct UserDefaultsTokenLocalService: TokenLocalService {
         do {
             let data = try JSONEncoder().encode(token)
             UserDefaults.standard.set(data,forKey: tokenKey)
+            return true
         } catch {
-            print("Error al codificar y almacenar el token \(error) o el refresh token")
+            print("Error encoding and storing token \(error) or refresh token")
+            return false
         }
     }
     

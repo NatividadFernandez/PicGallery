@@ -21,7 +21,7 @@ struct TokenRepository {
         try await remoteService.authorize()
     }
     
-    func saveAccessToken(url: URL) async throws {
+    func saveAccessToken(url: URL) async throws -> Bool {
         try await localService.saveAccessToken(url: url)
     }
 }

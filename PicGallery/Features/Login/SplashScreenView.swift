@@ -21,10 +21,9 @@ struct SplashScreenView: View {
     @State private var opacity = 0.5
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             if isActive {
                 coordinator.makeLoginView()
-                
             } else {
                 VStack {
                     

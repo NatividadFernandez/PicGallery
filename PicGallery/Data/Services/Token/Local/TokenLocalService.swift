@@ -8,6 +8,6 @@
 import Foundation
 
 protocol TokenLocalService {
-    func saveAccessToken(url: URL) async throws
+    func saveAccessToken(url: URL) async throws -> Bool
     func getAccessToken() async throws -> String
 }
