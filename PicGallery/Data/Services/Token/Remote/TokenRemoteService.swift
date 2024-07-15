@@ -8,6 +8,5 @@
 import Foundation
 
 protocol TokenRemoteService {
-    //func createAccessToken() async throws -> TokenResponse
     func authorize() async throws -> URL
 }

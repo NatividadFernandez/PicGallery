@@ -23,8 +23,6 @@ struct SplashScreenView: View {
     var body: some View {
         NavigationView {
             if isActive {
-                //ContentView()
-                //coordinator.makeGalleryView()
                 coordinator.makeLoginView()
                 
             } else {
@@ -34,7 +32,6 @@ struct SplashScreenView: View {
                         LottieView(loopMode: .loop, animationName: "photoAnimation")
                         Text("PicGallery")
                             .font(Font.custom("Monserrat", size: 80))
-                        //.foregroundColor(.purpleLight.opacity(0.80))
                         
                     }
                     .scaleEffect(size)
@@ -47,13 +44,10 @@ struct SplashScreenView: View {
                     }
                     
                 }
-                .onAppear {
-                    Task {
-                        //await viewModel.createAccessToken()
+                .task {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                        self.isActive = true
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                            self.isActive = true
-                        }
                     }
                 }
             }

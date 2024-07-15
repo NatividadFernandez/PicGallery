@@ -18,19 +18,6 @@ class LoginViewModel: ObservableObject {
         self.tokenRespository = tokenRespository
     }
     
-    /*@MainActor
-    func createAccessToken() async {
-        error = nil
-        isLoading = true
-        do {
-            try await tokenRespository.createAccessToken()
-        } catch (let error) {
-            self.error = error
-        }
-        
-        isLoading = false
-    } */
-    
     @MainActor
     func showWindow() async {
         error = nil

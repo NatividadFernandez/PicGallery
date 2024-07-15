@@ -9,11 +9,9 @@ import SwiftUI
 
 struct LoginView: View {
     
-    //@StateObject private var oauthManager = OAuthManager()
     @EnvironmentObject var coordinator: Coordinator
     @StateObject var viewModel: LoginViewModel
     @State private var isActive = false
-    //@State private var parameterValue: String? = nil
     
     
     init(viewModel: LoginViewModel) {
@@ -27,7 +25,6 @@ struct LoginView: View {
         } else {
             VStack {
                 Button(action: {
-                    //oauthManager.authorize()
                     Task {
                         await viewModel.showWindow()
                     }
@@ -45,19 +42,10 @@ struct LoginView: View {
             }
             .padding()
             .onOpenURL { url in
-                
                 Task {
                     await viewModel.saveAccessToken(url: url)
                 }
                     self.isActive = true
-                
-                
-                
-                /* let parameters = url.queryParameters()
-                 
-                 self.parameterValue = parameters["access_token"]
-                 
-                 print("Parametro: \(parameters)") */
             }
         }
     }
@@ -67,30 +55,3 @@ struct LoginView: View {
     let coordinator = Coordinator(mock: true)
     return coordinator.makeLoginView().environmentObject(coordinator)
 }
-
-
-/*.onOpenURL { url in
-    // Manejar la URL de retorno de Imgur para obtener el código de autorización
-    print("ENTRAS aquii")
-    /*guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
-          let queryItems = components.queryItems else {
-        return
-    }*/
-    
-    print(url)
-    
-    let parameters = url.queryParameters()
-    
-    self.parameterValue = parameters["access_token"]
-    
-    print("Parametro: \(parameters)")
-    
-    //print(components)
-    //print("QueryItems: \(queryItems)")
-    
-    
-    /*if let code = queryItems.first(where: { $0.name == "token" })?.value {
-        oauthManager.requestAccessToken(with: code)
-    }*/
-}
-}*/

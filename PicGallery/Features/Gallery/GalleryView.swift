@@ -18,13 +18,10 @@ struct GalleryView: View {
     @State private var isCameraPresented = false
     @State private var isFilePickerPresented = false
     @State private var selectedImage: UIImage?
-    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedPicture: Picture?
     @State private var showAlert = false
     @State private var showErrorAlert = false
     @State private var errorMessage: String? = nil
-    @State private var isImportingPicture = false
-    @State private var isTakingPicture = false
     @State private var showActionSheet = false
     
     init(viewModel: GalleryViewModel) {
@@ -77,15 +74,9 @@ struct GalleryView: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.blue)
                         .cornerRadius(8)
-                        .overlay(content: {
-                            if isImportingPicture {
-                                ProgressView()
-                            }
-                        })
                 }
                 
                 Button(action: {
-                    sourceType = .camera
                     isCameraPresented = true
                 }) {
                     Text("Take picture")
@@ -93,11 +84,6 @@ struct GalleryView: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(8)
-                        .overlay(content: {
-                            if isTakingPicture {
-                                ProgressView()
-                            }
-                        })
                 }
             }
             .padding()
@@ -143,7 +129,6 @@ struct GalleryView: View {
                 title: Text("Select an option"),
                 buttons: [
                     .default(Text("Photo Library")) {
-                        sourceType = .photoLibrary
                         isImagePickerPresented = true
                     },
                     .default(Text("File Explorer")) {
@@ -157,27 +142,13 @@ struct GalleryView: View {
     
     private func handleSelectImage(_ image: UIImage)  {
         Task {
-            handleAction(result: true)
             await viewModel.addPicture(image: image)
-            handleAction(result: false)
         }
     }
     
     private func deletePicture(_ picture: Picture)  {
         Task {
             await viewModel.deletePicture(picture: picture)
-        }
-    }
-    
-    private func handleAction(result : Bool) {
-        switch sourceType {
-        case .photoLibrary:
-            isImportingPicture = result
-        case .camera:
-            isTakingPicture = result
-        default:
-            isImportingPicture = result
-            break
         }
     }
 }
