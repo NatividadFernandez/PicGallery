@@ -18,7 +18,7 @@ navegación, desacoplando esta funcionalidad de los ViewModels y facilitando el 
 
 Para manejar el acceso a datos, he implementado el patrón Repository, que abstrae la lógica de obtención de datos, ya sea desde una fuente remota o local.
 Esto se refleja en archivos como TokenRepository.swift y GalleryRepository.swift. Estos repositorios encapsulan la lógica de acceso a datos y permiten cambiar
-la fuente de datos sin modificar el código que utiliza estos repositorios. La aplicación utiliza URLSession para realizar operaciones HTTP, como POST, GET y DELETE, con la API de Imgur. 
+la fuente de datos sin modificar el código que utiliza estos repositorios. Para realizar operaciones HTTP, como POST, GET y DELETE, utilizo URLSession. 
 
 Durante el desarrollo, me enfrenté a varios retos. Uno de ellos fue la gestión de sesiones, resuelto mediante el TokenRepository, que maneja la obtención y almacenamiento seguro de tokens. 
 Otro de ellos fue la implementación de pruebas unitarias para asegurar que la aplicación funciona como se espera. Utilizo mocks, como MockGalleryRemoteService.swift, para simular servicios y facilitar
@@ -34,3 +34,9 @@ la interacción con la API de Imgur.
 Para asegurar la calidad y funcionalidad del software, he implementado una serie de pruebas. Entre ellas se encuentran la confirmación de que las imágenes recibidas desde la API de Imgur(simulado) aparezcan 
 correctamente en la galería, y la validación de que al eliminar una imagen de la galería, esta desaparece. Estas pruebas aseguran que la lógica de la aplicación se mantiene coherente y que las funcionalidades
 importantes van según lo esperado.
+
+Video de demostración -> https://drive.google.com/file/d/1Kc8AW8p60fGXcXnWAdCzSJf_y57Kq59B/view?usp=sharing
+
+(Para poder eliminar se debe de mantener pulsado sobre la imagen elegida)
+
+
