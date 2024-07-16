@@ -23,7 +23,6 @@ struct GalleryView: View {
     @State private var errorMessage: String? = nil
     @State private var showActionSheet = false
     @State private var showAlertLogout = false
-    @State private var isLoggedIn = false
     
     init(viewModel: GalleryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -93,6 +92,9 @@ struct GalleryView: View {
                 //.navigationBarBackButtonHidden(true)
                 .toolbar {
                     logout()
+                }
+                .task {
+                    await viewModel.checkSession()
                 }
                 .sheet(isPresented: $isImagePickerPresented) {
                     ImagePicker(selectedImage: $selectedImage, isPresented: $isImagePickerPresented, sourceType: .photoLibrary)

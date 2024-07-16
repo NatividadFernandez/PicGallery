@@ -34,7 +34,7 @@ class Coordinator: ObservableObject {
     }
     
     func makeLoginViewModel() -> LoginViewModel {
-        return .init(tokenRespository: tokenRepository)
+        return .init(tokenRepository: tokenRepository)
     }
     
     // MARK: GalleryView
@@ -43,7 +43,7 @@ class Coordinator: ObservableObject {
     }
     
     func makeGalleryViewModel() -> GalleryViewModel {
-        return .init(galleryRepository: galleryRepository)
+        return .init(galleryRepository: galleryRepository, tokenRepository: tokenRepository)
     }
     
     

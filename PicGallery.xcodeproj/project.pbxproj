@@ -12,8 +12,6 @@
 		0C4F10472C3B307C00516EF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F10462C3B307C00516EF3 /* Assets.xcassets */; };
 		0C4F104A2C3B307C00516EF3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F10492C3B307C00516EF3 /* Preview Assets.xcassets */; };
 		0C4F10542C3B307C00516EF3 /* PicGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10532C3B307C00516EF3 /* PicGalleryTests.swift */; };
-		0C4F105E2C3B307C00516EF3 /* PicGalleryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F105D2C3B307C00516EF3 /* PicGalleryUITests.swift */; };
-		0C4F10602C3B307C00516EF3 /* PicGalleryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F105F2C3B307C00516EF3 /* PicGalleryUITestsLaunchTests.swift */; };
 		0C4F106E2C3D97BA00516EF3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F106D2C3D97BA00516EF3 /* NetworkError.swift */; };
 		0C4F10702C3D983F00516EF3 /* URLSessionNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F106F2C3D983F00516EF3 /* URLSessionNetworkClient.swift */; };
 		0C4F10722C3D98B000516EF3 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F10712C3D98B000516EF3 /* NetworkClient.swift */; };
@@ -72,8 +70,6 @@
 		0C4F104F2C3B307C00516EF3 /* PicGalleryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicGalleryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4F10532C3B307C00516EF3 /* PicGalleryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicGalleryTests.swift; sourceTree = "<group>"; };
 		0C4F10592C3B307C00516EF3 /* PicGalleryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicGalleryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C4F105D2C3B307C00516EF3 /* PicGalleryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicGalleryUITests.swift; sourceTree = "<group>"; };
-		0C4F105F2C3B307C00516EF3 /* PicGalleryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicGalleryUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0C4F106D2C3D97BA00516EF3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0C4F106F2C3D983F00516EF3 /* URLSessionNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionNetworkClient.swift; sourceTree = "<group>"; };
 		0C4F10712C3D98B000516EF3 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
@@ -137,7 +133,6 @@
 			children = (
 				0C4F10412C3B307A00516EF3 /* PicGallery */,
 				0C4F10522C3B307C00516EF3 /* PicGalleryTests */,
-				0C4F105C2C3B307C00516EF3 /* PicGalleryUITests */,
 				0C4F10402C3B307A00516EF3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -185,15 +180,6 @@
 				0C4F10532C3B307C00516EF3 /* PicGalleryTests.swift */,
 			);
 			path = PicGalleryTests;
-			sourceTree = "<group>";
-		};
-		0C4F105C2C3B307C00516EF3 /* PicGalleryUITests */ = {
-			isa = PBXGroup;
-			children = (
-				0C4F105D2C3B307C00516EF3 /* PicGalleryUITests.swift */,
-				0C4F105F2C3B307C00516EF3 /* PicGalleryUITestsLaunchTests.swift */,
-			);
-			path = PicGalleryUITests;
 			sourceTree = "<group>";
 		};
 		0C4F106C2C3D973900516EF3 /* NetworkClient */ = {
@@ -544,8 +530,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C4F10602C3B307C00516EF3 /* PicGalleryUITestsLaunchTests.swift in Sources */,
-				0C4F105E2C3B307C00516EF3 /* PicGalleryUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

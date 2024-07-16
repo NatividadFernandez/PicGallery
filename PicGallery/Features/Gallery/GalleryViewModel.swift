@@ -12,6 +12,7 @@ class GalleryViewModel: ObservableObject {
     
     @EnvironmentObject var coordinator: Coordinator
     private let galleryRepository: GalleryRepository
+    private let tokenRepository: TokenRepository
     private var currentTask: Task<Void, Never>? = nil
     
     @Published var isLoading = false
@@ -21,8 +22,9 @@ class GalleryViewModel: ObservableObject {
     @Published var isLoggedIn = false
     @Published var activeAlert: ActiveAlertGallery?
     
-    init(galleryRepository: GalleryRepository) {
+    init(galleryRepository: GalleryRepository, tokenRepository: TokenRepository) {
         self.galleryRepository = galleryRepository
+        self.tokenRepository = tokenRepository
     }
     
     @MainActor
@@ -95,11 +97,25 @@ class GalleryViewModel: ObservableObject {
         isLoading = true
         
         do {
-            isLoggedIn = try await galleryRepository.logout()
+            isLoggedIn = try await tokenRepository.logout()
             if !isLoggedIn {
                 isLoggedIn = true
             }
         } catch {
+            self.error = error
+            activeAlert = .showAlertViewModel
+        }
+        
+        isLoading = false
+    }
+    
+    @MainActor
+    func checkSession() async {
+        error = nil
+        isLoading = true
+        do {
+            isLoggedIn = try await tokenRepository.checkSession()
+        } catch (let error) {
             self.error = error
             activeAlert = .showAlertViewModel
         }

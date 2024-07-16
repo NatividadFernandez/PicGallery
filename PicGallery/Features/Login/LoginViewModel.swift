@@ -8,7 +8,7 @@
 import Foundation
 
 class LoginViewModel: ObservableObject {
-    private let tokenRespository: TokenRepository
+    private let tokenRepository: TokenRepository
     
     @Published var isLoading = false
     @Published var error: Error?
@@ -20,8 +20,8 @@ class LoginViewModel: ObservableObject {
     @Published var activeAlert: ActiveAlertLogin?
 
     
-    init(tokenRespository: TokenRepository) {
-        self.tokenRespository = tokenRespository
+    init(tokenRepository: TokenRepository) {
+        self.tokenRepository = tokenRepository
     }
     
     @MainActor
@@ -29,7 +29,7 @@ class LoginViewModel: ObservableObject {
         error = nil
         isLoading = true
         do {
-            let url = try await tokenRespository.authorize()
+            let url = try await tokenRepository.authorize()
             self.authorizationURL = url
         } catch (let error) {
             self.error = error
@@ -44,7 +44,7 @@ class LoginViewModel: ObservableObject {
         error = nil
         isLoading = true
         do {
-            let saveToken = try await tokenRespository.saveAccessToken(url: url)
+            let saveToken = try await tokenRepository.saveAccessToken(url: url)
             if !saveToken {
                 activeAlert = .showAlertViewModel
             } else {
@@ -63,7 +63,7 @@ class LoginViewModel: ObservableObject {
         error = nil
         isLoading = true
         do {
-            isLoggedIn = try await tokenRespository.checkSession()
+            isLoggedIn = try await tokenRepository.checkSession()
         } catch (let error) {
             self.error = error
             activeAlert = .showAlertViewModel
