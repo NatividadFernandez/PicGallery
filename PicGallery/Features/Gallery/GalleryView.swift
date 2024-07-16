@@ -91,7 +91,7 @@ struct GalleryView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 //.navigationBarBackButtonHidden(true)
                 .toolbar {
-                    logout()
+                    exit()
                 }
                 .task {
                     await viewModel.checkSession()
@@ -139,7 +139,9 @@ struct GalleryView: View {
                         return Alert(
                             title: Text("Error"),
                             message: Text(viewModel.messageError),
-                            dismissButton: .default(Text("OK"))
+                            dismissButton: .default(Text("OK")) {
+                                logout()
+                            }
                         )
                     case .showAlertDelete:
                         return Alert(
@@ -176,7 +178,7 @@ struct GalleryView: View {
         }
     }
     
-    private func logout() -> some View {
+    private func exit() -> some View {
         Button(action: {
             Task {
                 showAlertLogout = true
@@ -190,16 +192,19 @@ struct GalleryView: View {
                 title: Text("Logout"),
                 message: Text("Are you sure you want to log out?"),
                 primaryButton: .default(Text("OK")) {
-                    Task {
-                        await viewModel.logout()
-                    }
-                    
+                    logout()
                 },
                 secondaryButton: .cancel()
             )
         }
-        
     }
+    
+    private func logout()  {
+        Task {
+            await viewModel.logout()
+        }
+    }
+    
 }
 
 #Preview {

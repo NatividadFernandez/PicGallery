@@ -2,7 +2,7 @@
 //  PicGalleryTests.swift
 //  PicGalleryTests
 //
-//  Created by Patricia Lucia Morillas Alcala on 7/7/24.
+//  Created by Natividad on 7/7/24.
 //
 
 import XCTest
